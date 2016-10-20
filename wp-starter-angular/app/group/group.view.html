@@ -13,19 +13,27 @@
                ng-model="vm.entity.name">
       </div>
       <div class="form-group">
-        <label>Size</label>
-        <ui-select ng-model="vm.entity.groupSize"
-                   title="Choose group size">
-          <ui-select-match
-            placeholder="Select group size...">
-            <span>{{$select.selected}}</span>
-          </ui-select-match>
-          <ui-select-choices
-            repeat="item in (vm.availableSizes | filter:$select.search )"
-            position="auto">
-            {{item}}
-          </ui-select-choices>
-        </ui-select>
+        <div class="row">
+          <div class="col-md-8">
+            <label>Size</label>
+            <ui-select ng-model="vm.entity.groupSize"
+                       title="Choose group size">
+              <ui-select-match
+                placeholder="Select group size...">
+                <span>{{$select.selected}}</span>
+              </ui-select-match>
+              <ui-select-choices
+                repeat="item in (vm.availableSizes | filter:$select.search )"
+                position="auto">
+                {{item}}
+              </ui-select-choices>
+            </ui-select>
+          </div>
+          <div class="col-md-4">
+            <label> Number of terms</label>
+            <input type="number" min="1" class="form-control" ng-required="true" ng-model="vm.entity.terms">
+          </div>
+        </div>
       </div>
     </div>
     <div class="panel-footer text-right">
@@ -51,16 +59,23 @@
   </form>
 </div>
 <div class="row">
+  <div class="col-md-8 search-margin">
+    <label>Search by Group Name</label>
+    <input type="text" class="form-control" ng-model="searchGrName.name">
+  </div>
+
   <div class="col-md-12">
     <table ng-show="vm.entities.length>0" class="table table-bordered table-striped">
       <tr>
         <th>Group Name</th>
         <th>Group Size</th>
+        <th>Number of terms</th>
         <th>Actions</th>
       </tr>
-      <tr ng-repeat="e in vm.entities">
+      <tr ng-repeat="e in vm.entities | orderBy:['name', 'terms'] | filter:searchGrName">
         <td>{{e.name}}</td>
         <td>{{e.groupSize}}</td>
+        <td>{{e.terms}}</td>
         <td>
           <button class="btn btn-xs btn-default"
                   ng-click="vm.edit(e)">
@@ -72,7 +87,7 @@
           </button>
         </td>
       </tr>
-    </table>
+    </table> </br>
 
     <div class="panel panel-warning text-warning" ng-hide="vm.entities.length>0">
       There are no groups!

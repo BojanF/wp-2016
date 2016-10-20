@@ -40,12 +40,12 @@
                        title="Lab group ">
               <ui-select-match
                 placeholder="Select your Lab group...">
-                <span>{{$select.selected}}</span>
+                <span>{{$select.selected.name}}</span>
               </ui-select-match>
               <ui-select-choices
-                repeat="group.name in (vm.LabGroups | filter:$select.search)"
+                repeat="group in (vm.LabGroups | filter:$select.search)"
                 position="auto">
-                {{group}}
+                {{group.name}}
               </ui-select-choices>
             </ui-select>
           </div>
