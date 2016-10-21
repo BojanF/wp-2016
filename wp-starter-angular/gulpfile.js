@@ -58,7 +58,8 @@ var JS_LIB = [
   'bower_components/angular/angular.js',
   'bower_components/momentjs/moment.js',
   'bower_components/angular-ui-router/release/angular-ui-router.js',
-  'bower_components/angular-ui-select/dist/select.js'
+  'bower_components/angular-ui-select/dist/select.js',
+  'bower-components/angular-smart-table/dist/smart-table.js'
 ];
 
 

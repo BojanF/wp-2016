@@ -21,6 +21,9 @@
 Потоа треба да се превземат зависностите со помош на командата:
 ```bower install```
 
+Следно треба да се извржи командата за да се преземе [smart-table](https://lorenzofox3.github.io/smart-table-website/) библиотеката
+```bower install angular-smart-table```
+
 По оваа команда треба да се креира директориумот `bower_components` во кој ќе бидат зачувани сите зависности кои се 
  конфигурирани во `bower.json` датотеката. 
  

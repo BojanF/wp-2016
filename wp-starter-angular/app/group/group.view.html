@@ -59,34 +59,36 @@
   </form>
 </div>
 <div class="row">
-  <div class="col-md-8 search-margin">
-    <label>Search by Group Name</label>
-    <input type="text" class="form-control" ng-model="searchGrName.name">
-  </div>
-
   <div class="col-md-12">
     <table ng-show="vm.entities.length>0" class="table table-bordered table-striped">
-      <tr>
-        <th>Group Name</th>
-        <th>Group Size</th>
-        <th>Number of terms</th>
-        <th>Actions</th>
-      </tr>
-      <tr ng-repeat="e in vm.entities | orderBy:['name', 'terms'] | filter:searchGrName">
-        <td>{{e.name}}</td>
-        <td>{{e.groupSize}}</td>
-        <td>{{e.terms}}</td>
-        <td>
-          <button class="btn btn-xs btn-default"
-                  ng-click="vm.edit(e)">
-            Edit
-          </button>
-          <button class="btn btn-xs btn-danger"
-                  ng-click="vm.remove(e)">
-            Remove
-          </button>
-        </td>
-      </tr>
+      <thead>
+        <tr>
+          <th>Group Name</th>
+          <th>Group Size</th>
+          <th>Number of terms</th>
+          <th>Actions</th>
+        </tr>
+        <tr>
+          <th colspan="4"> <input type="text" class="form-control" ng-model="searchGrName.name" placeholder="search by group name..."> </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="e in vm.entities | orderBy:['name', 'terms'] | filter:searchGrName">
+          <td>{{e.name}}</td>
+          <td>{{e.groupSize}}</td>
+          <td>{{e.terms}}</td>
+          <td>
+            <button class="btn btn-xs btn-default"
+                    ng-click="vm.edit(e)">
+              Edit
+            </button>
+            <button class="btn btn-xs btn-danger"
+                    ng-click="vm.remove(e)">
+              Remove
+            </button>
+          </td>
+        </tr>
+      </tbody>
     </table> </br>
 
     <div class="panel panel-warning text-warning" ng-hide="vm.entities.length>0">
