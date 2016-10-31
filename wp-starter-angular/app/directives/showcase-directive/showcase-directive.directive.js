@@ -9,7 +9,9 @@
 
   /* @ngInject */
   function wpNav() {
+    console.log("BOJAN 2");
     var directive = {
+
       restrict: 'EA',
       templateUrl: 'app/directives/showcase-directive/showcase-directive.view.html',
       scope: {
