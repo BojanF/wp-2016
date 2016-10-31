@@ -7,6 +7,11 @@
   margin-top: 20px;
 }
 
+<<<<<<< HEAD
 .search-margin{
   margin-bottom: 20px;
+=======
+.clickable {
+  cursor: pointer;
+>>>>>>> upstream/master
 }
