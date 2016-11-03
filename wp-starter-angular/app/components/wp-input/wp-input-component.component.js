@@ -6,59 +6,36 @@
 
   angular
     .module('wp-angular-starter')
-    .component('wpInput', wpIn);
+    .component('wpInput', funk);
 
-  //wpIn.$inject = [];
+    funk.$inject = [];
 
 
-
+  console.log('test1234');
   /* @ngInject */
-  function wpIn() {
+  function funk() {
 
+    console.log('test');
     var component = {
       templateUrl: 'app/components/wp-input/wp-input-component.view.html',
       bindings: {
-        wpLabel: '=',
-        wpType: '=',
+        wpLabel: '@',
+        wpType: '@',
         wpModel: '='
       },
+      controller: InputComponent,
+      controllerAs: 'vm'
 
-      controllerAs: 'vm'/*,
-      link: link, // since compile is defined, this will not be invoked
-      transclude: {
-        trName: '?trname',
-        trValue: '?trval'
-      }*/
     };
     return component;
   }
 
-  /*WpInController.$inject = [];
-  function WpInController(){
-    console.log("BOJAN ctrl");
-  }*/
+  InputComponent.$inject = [];
+  function InputComponent(){
 
-  /*WpNavController.$inject = [];
+    console.log('test');
+  };
 
-  /* @ngInject
-  function WpNavController() {
-    var vm = this;
-
-    console.log('in directive controller');
-
-    vm.name='Petko';
-
-    vm.invokeFunctionFromObject = invokeFunctionFromObject;
-
-    function invokeFunctionFromObject() {
-      if (typeof vm.functionObjectBinding === 'function') {
-        console.log('in invokeFunctionFromObject');
-        vm.functionObjectBinding();
-      } else {
-        console.log('no function for attribute functionObjectBinding');
-      }
-    }
-  }*/
 
 
 })();

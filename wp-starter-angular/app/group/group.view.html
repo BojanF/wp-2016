@@ -10,9 +10,13 @@
         <input class="form-control"
                type="text"
                ng-required="true"
-               ng-model="vm.entity.name">
+               ng-model='vm.entity.name'>
       </div>
-
+      ====
+      <wp-input wp-label="const"
+                wp-type="text"
+                wp-model="vm.entity.prezime"></wp-input>
+====
       <div class="form-group">
         <div class="row">
           <div class="col-md-8">
@@ -100,7 +104,4 @@
 
 
 
-<wp-input wp-label="const"
-          wp-type="text"
-          wp-model="promenliva"></wp-input>
 
