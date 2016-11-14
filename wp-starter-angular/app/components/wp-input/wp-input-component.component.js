@@ -6,34 +6,63 @@
 
   angular
     .module('wp-angular-starter')
-    .component('wpInput', funk);
-
-    funk.$inject = [];
-
-
-  console.log('test1234');
-  /* @ngInject */
-  function funk() {
-
-    console.log('test');
-    var component = {
+    .component('wpInput', {
       templateUrl: 'app/components/wp-input/wp-input-component.view.html',
       bindings: {
         wpLabel: '@',
         wpType: '@',
-        wpModel: '='
+        wpModel: '=',
+        wpRequired: '=',
+        wpFocus: "="
       },
-      controller: InputComponent,
-      controllerAs: 'vm'
+      controller: InputComponent
 
+    }).directive('focusMe', function () {
+    return {
+      restrict: 'A',
+      scope: {
+        focusMe: '='
+      },
+      link: function (scope, element) {
+        scope.$watch('focusMe', function (val) {
+          if (val) {
+            element[0].focus();
+          }
+        });
+      }
     };
-    return component;
-  }
+  });
 
-  InputComponent.$inject = [];
-  function InputComponent(){
+  //funk.$inject = [];
 
-    console.log('test');
+
+  //console.log('test1234');
+  /* @ngInject */
+  /*function funk() {
+
+   console.log('test');
+   var component = {
+   templateUrl: 'app\components\wp-input\wp-input-component.view.html',
+   bindings: {
+   wpLabel: '@',
+   wpType: '@',
+   wpModel: '='
+   },
+   controller: InputComponent,
+   controllerAs: 'vm'
+
+   };
+   return component;
+   }*/
+
+  InputComponent.$inject = ['$attrs'];
+  function InputComponent($attrs){
+    this.wpLabel = $attrs.wpLabel;
+    this.wpType = $attrs.wpType;
+    //this.wpModel = $attrs.wpModel;
+    this.wpRequired = $attrs.wpRequired;
+    this.wpFocus = $attrs.wpFocus;
+
   };
 
 

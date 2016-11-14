@@ -53,6 +53,7 @@
     }
 
     function validateGroup(entity) {
+      $log.debug(entity.name);
       if (entity.name === null
         || entity.name === undefined
         || typeof entity.name !== 'string'

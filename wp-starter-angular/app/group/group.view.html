@@ -6,17 +6,20 @@
     <div class="panel-body">
 
       <div class="form-group">
-        <label>Name</label>
-        <input class="form-control"
-               type="text"
-               ng-required="true"
-               ng-model='vm.entity.name'>
+        <!--<label>Name</label>
+        <input class="form-control" type="text" ng-required="true" ng-model='vm.entity.name'> -->
+
+
+      <!-- komponentata wp-input ja vrski istata rabota kako zakomentiranoto parce kod gore-->
+        <wp-input wp-label="Name"
+                  wp-type="text"
+                  wp-model="vm.entity.name"
+                  wp-required="true"
+                  wp-focus="true">
+
+        </wp-input>
       </div>
-      ====
-      <wp-input wp-label="const"
-                wp-type="text"
-                wp-model="vm.entity.prezime"></wp-input>
-====
+
       <div class="form-group">
         <div class="row">
           <div class="col-md-8">
@@ -35,8 +38,15 @@
             </ui-select>
           </div>
           <div class="col-md-4">
-            <label> Number of terms</label>
-            <input type="number" min="1" class="form-control" ng-required="true" ng-model="vm.entity.terms">
+            <!--<label> Number of terms</label>
+            <input type="number" min="1" class="form-control" ng-required="true" ng-model="vm.entity.terms">-->
+            <wp-input wp-label="Number of terms"
+                      wp-type="number"
+                      wp-model="vm.entity.terms"
+                      wp-required="true"
+                      wp-focus="false">
+            </wp-input>
+
           </div>
         </div>
       </div>

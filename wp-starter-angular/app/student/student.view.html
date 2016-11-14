@@ -12,18 +12,28 @@
       <div class="form-group">
         <div class="row">
           <div class="col-md-6">
-            <label>Name</label>
-            <input class="form-control"
-                   type="text"
-                   ng-required="true"
-                   ng-model="vm.studentEntity.name">
+            <!--<label>Name</label>
+            <input class="form-control" type="text" ng-required="true" ng-model="vm.studentEntity.name">-->
+
+            <!-- komponentata wp-input ja vrski istata rabota kako zakomentiranoto parce kod gore-->
+            <wp-input wp-label="Name"
+                      wp-type="text"
+                      wp-model="vm.studentEntity.name"
+                      wp-required="true"
+                      wp-focus="true">
+            </wp-input>
           </div>
           <div class="col-md-6">
-            <label> Surname </label>
-            <input class="form-control"
-                   type="text"
-                   ng-required="true"
-                   ng-model="vm.studentEntity.surename">
+            <!--<label> Surname </label>
+            <input class="form-control" type="text" ng-required="true" ng-model="vm.studentEntity.surename">-->
+
+            <!-- komponentata wp-input ja vrski istata rabota kako zakomentiranoto parce kod gore-->
+            <wp-input wp-label="Surename"
+                      wp-type="text"
+                      wp-model="vm.studentEntity.surename"
+                      wp-required="true"
+                      wp-focus="false">
+            </wp-input>
           </div>
         </div>
       </div>
@@ -31,12 +41,22 @@
       <div class="form-group">
         <div class="row">
           <div class="col-md-6">
-            <label> Index </label>
-            <input type="text" class="form-control" ng-required="true" ng-model="vm.studentEntity.index">
+            <!--<label> Index </label>
+            <input type="text" class="form-control" ng-required="true" ng-model="vm.studentEntity.index">-->
+
+            <!-- komponentata wp-input ja vrski istata rabota kako zakomentiranoto parce kod gore-->
+            <wp-input wp-label="Index"
+                      wp-type="number"
+                      wp-model="vm.studentEntity.index"
+                      wp-required="true"
+                      wp-focus="false">
+            </wp-input>
           </div>
+          <!-- dropdown za grupite-->
           <div class="col-md-6">
-            <label>Select your Lab group</label>
+            <!--<label>Select your Lab group</label>
             <ui-select ng-model="vm.studentEntity.LabGroup"
+                       ng-required="true"
                        title="Lab group ">
               <ui-select-match
                 placeholder="Select your Lab group...">
@@ -47,7 +67,10 @@
                 position="auto">
                 {{group.name}}
               </ui-select-choices>
-            </ui-select>
+            </ui-select>-->
+            <group-select gs-model="vm.studentEntity.LabGroup"
+
+            ></group-select>
           </div>
 
         </div>
@@ -75,6 +98,7 @@
 
   </form>
 </div>
+<!-- Lista od studenti -->
 <div class="row">
     <div class="col-md-12">
     <table st-table="studentEntities" st-safe-src="vm.studentEntities" ng-show="vm.studentEntities.length>0" class="table table-bordered table-striped">
