@@ -12,25 +12,25 @@
         wpLabel: '@',
         wpType: '@',
         wpModel: '=',
-        wpRequired: '=',
-        wpFocus: "="
+        wpRequired: '@',
+        wpFocus: "@"
       },
       controller: InputComponent
 
     }).directive('focusMe', function () {
-    return {
-      restrict: 'A',
-      scope: {
-        focusMe: '='
-      },
-      link: function (scope, element) {
-        scope.$watch('focusMe', function (val) {
-          if (val) {
-            element[0].focus();
+        return {
+          restrict: 'A',
+          scope: {
+            focusMe: '='
+          },
+          link: function (scope, element) {
+            scope.$watch('focusMe', function (val) {
+              if (val) {
+                element[0].focus();
+              }
+            });
           }
-        });
-      }
-    };
+        };
   });
 
   //funk.$inject = [];
