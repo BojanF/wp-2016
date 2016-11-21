@@ -6,8 +6,36 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
          id="WebApp_ID" version="2.5">
 
     <display-name>Spring MVC Starter</display-name>
+    <description> Project used for the Web Programming course</description>
+    <listener>
+        <listener-class>mk.ukim.finki.wp.web.PizzaListener</listener-class>
+    </listener>
+    <servlet>
+        <servlet-name>PizzaOrder</servlet-name>
+        <servlet-class>mk.ukim.finki.wp.web.PizzaOrder</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PizzaOrder</servlet-name>
+        <url-pattern>/PizzaOrder.do</url-pattern>
+    </servlet-mapping>
 
-    <filter>
+    <servlet>
+        <servlet-name>AddresInfo</servlet-name>
+        <servlet-class>mk.ukim.finki.wp.web.AddressInfo</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddresInfo</servlet-name>
+        <url-pattern>/AddresInfo.do</url-pattern>
+    </servlet-mapping>
+
+
+
+    <!--<servlet>
+        <servlet-name>AdressInfo</servlet-name>
+        <servlet-class>mk.ukim.finki.wp.web.AdressInfo</servlet-class>
+    </servlet>-->
+
+    <!--<filter>
         <filter-name>MyFilter</filter-name>
         <filter-class>mk.ukim.finki.wp.web.MyFilter</filter-class>
     </filter>
@@ -53,7 +81,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
     <servlet-mapping>
         <servlet-name>redirect-servlet</servlet-name>
         <url-pattern>/redirect-servlet</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping>-->
 
     <!--<context-param>-->
     <!--<param-name>contextConfigLocation</param-name>-->

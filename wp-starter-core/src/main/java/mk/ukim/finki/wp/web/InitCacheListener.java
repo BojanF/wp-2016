@@ -27,9 +27,9 @@ public class InitCacheListener implements ServletContextListener,
       */
 
     //TODO: init servletContext cache here
-    synchronized (InitCacheListener.class) {
+    /*synchronized (InitCacheListener.class) {
       sce.getServletContext().setAttribute("users", new HashMap());
-    }
+    }*/
   }
 
   public void contextDestroyed(ServletContextEvent sce) {
