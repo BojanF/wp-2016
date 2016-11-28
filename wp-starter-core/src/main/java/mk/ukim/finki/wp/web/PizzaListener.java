@@ -15,7 +15,7 @@ public class PizzaListener implements ServletContextListener, HttpSessionListene
     }
 
     public void contextInitialized(ServletContextEvent servletContextEvent) {
-        System.out.println("[WP-Log] {" + servletContextEvent.toString() +"}");
+        System.out.println("[WP-Log] {contextInitialized}");
     }
 
     public void contextDestroyed(ServletContextEvent servletContextEvent) {
@@ -23,7 +23,7 @@ public class PizzaListener implements ServletContextListener, HttpSessionListene
     }
 
     public void attributeAdded(HttpSessionBindingEvent httpSessionBindingEvent) {
-        System.out.println("[WP-Log] {" + httpSessionBindingEvent.toString() +"}");
+        System.out.println("[WP-Log] {contextDestroyed}");
     }
 
     public void attributeRemoved(HttpSessionBindingEvent httpSessionBindingEvent) {
@@ -31,14 +31,14 @@ public class PizzaListener implements ServletContextListener, HttpSessionListene
     }
 
     public void attributeReplaced(HttpSessionBindingEvent httpSessionBindingEvent) {
-        System.out.println("[WP-Log] {" + httpSessionBindingEvent.toString() +"}");
+        System.out.println("[WP-Log] {attributeRemoved}");
     }
 
     public void sessionCreated(HttpSessionEvent httpSessionEvent) {
-        System.out.println("[WP-Log] {" + httpSessionEvent.toString() +"}");
+        System.out.println("[WP-Log] {sessionCreated}");
     }
 
     public void sessionDestroyed(HttpSessionEvent httpSessionEvent) {
-        System.out.println("[WP-Log] {" + httpSessionEvent.toString() +"}");
+        System.out.println("[WP-Log] {sessionDestroyed}");
     }
 }
