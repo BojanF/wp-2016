@@ -12,7 +12,7 @@
 </head>
 <body>
     <h1> Customer Information </h1>
-    <form method="POST" action="/placeOrder">
+    <form method="POST" action="/PlaceOrder">
         <label> Name:</label> <input type="text" name="clientName"> <br>
         <label> Address:</label> <input type="text" name="clientAddress"> <br>
         <input type="submit" value="submit">

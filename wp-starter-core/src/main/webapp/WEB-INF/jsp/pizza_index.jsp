@@ -15,8 +15,7 @@
 </head>
 <body>
     <h1> Chose pizza size </h1>
-    <form action="/showClientInfo" method="POST">
-        <input type="radio" name="size"
+    <form action="/ShowClientInfo" method="POST">
         <%
             for (String st:golemini) {
                 out.write("<input type=\"radio\" name=\"size\" value=\""+st+"\"> "+ st +"<br>");

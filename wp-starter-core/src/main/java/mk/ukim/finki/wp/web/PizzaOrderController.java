@@ -48,8 +48,8 @@ public class PizzaOrderController {
         return mv;
     }
 
-    @RequestMapping(method = RequestMethod.POST, value="/showClientInfo")
-    public ModelAndView showClientInfo(@RequestParam String size, HttpSession session){
+    @RequestMapping(method = RequestMethod.POST, value="/ShowClientInfo")
+    public ModelAndView ShowClientInfo(@RequestParam String size, HttpSession session){
         System.out.println("Vneseno golemina na pizza");
         ModelAndView mv = new ModelAndView();
         mv.setViewName("customer_info");
@@ -57,8 +57,8 @@ public class PizzaOrderController {
         return mv;
     }
 
-    @RequestMapping(method = RequestMethod.POST, value="/placeOrder")
-    public ModelAndView placeOrder(@RequestParam String clientName, @RequestParam String clientAddress, HttpSession session){
+    @RequestMapping(method = RequestMethod.POST, value="/PlaceOrder")
+    public ModelAndView PlaceOrder(@RequestParam String clientName, @RequestParam String clientAddress, HttpSession session){
         System.out.println("Vneseno ime i adresa");
         ModelAndView mv = new ModelAndView();
 
