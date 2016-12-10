@@ -5,7 +5,8 @@
     .module('wp-angular-starter', [
       'ui.router',
       'ui.select',
-      'smart-table'
+      'smart-table',
+      'ngResource'
     ]);
 
 })(angular);

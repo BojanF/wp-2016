@@ -33,8 +33,10 @@
       vm.saveErrMsg = null;
 
       var promise = GroupService.save(vm.entity);
+
       promise.then(successCallback, errorCallback);
       function successCallback(data) {
+        $log.debug(vm.entity.name);
         loadGroups();
         vm.saveOkMsg = "Group with id " + data.id + " is saved";
         clear();

@@ -21,15 +21,21 @@
 Потоа треба да се превземат зависностите со помош на командата:
 ```bower install```
 
-Следно треба да се изврши командата 
-```bower install angular-smart-table```
-за да се преземе [smart-table](https://lorenzofox3.github.io/smart-table-website/) библиотеката
+
 
 По оваа команда треба да се креира директориумот `bower_components` во кој ќе бидат зачувани сите зависности кои се 
  конфигурирани во `bower.json` датотеката. 
  
      Оваа команда треба да се изврши секогаш кога се додава нова библиотека преку bower.json
- 
+
+Следно треба да се изврши командата 
+```bower install angular-smart-table```
+за да се преземе [smart-table](https://lorenzofox3.github.io/smart-table-website/) библиотеката
+
+
+Следно треба да се изврши командата 
+```bower install angular-resource 1.5.9```
+за да се преземе [ngResource](https://docs.angularjs.org/api/ngResource) библиотеката потребна за [$resource] (https://docs.angularjs.org/api/ngResource/service/$resource) сервисот.
 <hr/>
 
 Потоа извршете `gulp build` да извршите иницијално составување на библиотеките и кодовите конфигурирани во `gulpfile.js`. 

@@ -23,7 +23,8 @@ var JS_APP = [
   'app/c1/second.controller.js',
   'app/group/group.state.js',
   'app/group/group.controller.js',
-  'app/group/group.local.factory.js',
+  //'app/group/group.local.factory.js',//ova treba da se smeni lab6
+  'app/group/group-service-remote.js', // za lab6
   'app/default-page/**.js',
   'app/student/student.controller.js',
   'app/student/student.state.js',
@@ -64,7 +65,8 @@ var JS_LIB = [
   'bower_components/momentjs/moment.js',
   'bower_components/angular-ui-router/release/angular-ui-router.js',
   'bower_components/angular-ui-select/dist/select.js',
-  'bower-components/angular-smart-table/dist/smart-table.js'
+  'bower-components/angular-smart-table/dist/smart-table.js',
+  'bower_components/angular-resource/angular-resource.js'
 ];
 
 
@@ -86,7 +88,10 @@ var MODULE_NAME = 'wp-angular-starter';
 /**
  * The URL of the back-end API
  */
-var API_URL = 'http://localhost:8080/servlet-showcase/api';
+//staro pred lab6
+//var API_URL = 'http://localhost:8080/servlet-showcase/api';
+//novo za lab6
+var API_URL = 'http://localhost:8080/api';
 /**
  * Route to which the API calls will be mapped
  */
