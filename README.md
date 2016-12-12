@@ -34,7 +34,7 @@
 
 
 Следно треба да се изврши командата 
-```bower install angular-resource 1.5.9```
+```bower install angular-resource#1.5.9```
 за да се преземе [ngResource](https://docs.angularjs.org/api/ngResource) библиотеката потребна за [$resource] (https://docs.angularjs.org/api/ngResource/service/$resource) сервисот.
 <hr/>
 
