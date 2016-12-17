@@ -2,6 +2,7 @@ package mk.ukim.finki.wp.web;
 
 import mk.ukim.finki.wp.model.Group;
 import mk.ukim.finki.wp.service.IGroupService;
+import mk.ukim.finki.wp.service.mk.ukim.finki.wp.service.impl.GroupService;
 import mk.ukim.finki.wp.service.mk.ukim.finki.wp.service.impl.GroupServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +17,7 @@ import java.util.List;
 public class GroupController {
 
     @Autowired
-    private GroupServiceImpl groupService;
+    private GroupService groupService;
 
 
     /*Group g = new Group((long)1, "G1", 20);
@@ -38,7 +39,8 @@ public class GroupController {
 
     @RequestMapping(method = RequestMethod.POST)
     public Group save(@RequestBody Group group){
-        System.out.println("SAVEEEEEEEEEEEE"); return groupService.save(group);
+        System.out.println("SAVEEEEEEEEEEEE");
+        return groupService.save(group);
 
     }
 

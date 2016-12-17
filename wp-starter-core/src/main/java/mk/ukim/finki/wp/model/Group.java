@@ -1,13 +1,24 @@
 package mk.ukim.finki.wp.model;
 
+import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
 /**
  * Created by Bojan on 12/1/2016.
  */
+@Entity
+@Table(name = "lab_groups")
 public class Group {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @NotNull
     private String name;
     private Integer groupSize;
-    private Integer terms;
+    @NotNull
+    @Min(value = 0)
+    private Long terms;
 
 
 
@@ -23,7 +34,7 @@ public class Group {
         return groupSize;
     }
 
-    public Integer getTerms() {
+    public Long getTerms() {
         return terms;
     }
 
@@ -40,7 +51,7 @@ public class Group {
         this.groupSize = groupSize;
     }
 
-    public void setTerms(Integer terms) {
+    public void setTerms(Long terms) {
         this.terms = terms;
     }
 
