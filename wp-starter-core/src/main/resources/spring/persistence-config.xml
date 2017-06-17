@@ -25,7 +25,12 @@
           p:driverClassName="${jdbc.driverClassName}"
           p:url="${jdbc.url}"
           p:username="${jdbc.username}"
+<<<<<<< HEAD
           p:password="${jdbc.password}"/>
+=======
+          p:password="${jdbc.password}"
+          destroy-method="close"/>
+>>>>>>> upstream/master
 
 
     <bean id="entityManagerFactory"
@@ -42,6 +47,7 @@
         <property name="packagesToScan" value="mk.ukim.finki.wp.model"/>
     </bean>
 
+<<<<<<< HEAD
 
     <tx:annotation-driven />
         <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
@@ -63,12 +69,27 @@
         </bean>
 
         <tx:annotation-driven />
+=======
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
+          p:entityManagerFactory-ref="entityManagerFactory"/>
+
+>>>>>>> upstream/master
 
     <!-- Post-processor to perform exception translation on @Repository classes
         (from native exceptions such as JPA PersistenceExceptions to Spring's DataAccessException
         hierarchy). -->
+<<<<<<< HEAD
     <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
 
 
     <context:component-scan base-package="mk.ukim.finki.wp.persistence"/>
+=======
+    <bean
+            class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+
+
+    <context:component-scan base-package="mk.ukim.finki.wp.persistence"/>
+
+    <tx:annotation-driven/>
+>>>>>>> upstream/master
 </beans>
