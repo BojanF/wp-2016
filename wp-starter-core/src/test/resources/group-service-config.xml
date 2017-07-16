@@ -16,4 +16,5 @@
     <import resource="classpath:spring/persistence-config.xml"/>
 
     <bean class="mk.ukim.finki.wp.service.impl.InMemoryGroupService"/>
+    <bean class="mk.ukim.finki.wp.service.impl.entities.GradeService"/>
 </beans>

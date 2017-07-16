@@ -1,7 +1,7 @@
 package mk.ukim.finki.wp.web.rest;
 
 import mk.ukim.finki.wp.model.Group;
-import mk.ukim.finki.wp.service.GroupService;
+import mk.ukim.finki.wp.service.IGroupService;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -17,17 +17,17 @@ import java.util.List;
  */
 @RestController
 @RequestMapping(value = "/api/groups", produces = "application/json")
-public class GroupResource implements ApplicationContextAware {
+public class GroupController implements ApplicationContextAware {
 
   public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-    GroupService bean = applicationContext.getBean(GroupService.class);
+    IGroupService bean = applicationContext.getBean(IGroupService.class);
     System.out.println(bean);
   }
 
-  private GroupService service;
+  private IGroupService service;
 
   @Autowired
-  public GroupResource(GroupService service) {
+  public GroupController(IGroupService service) {
     this.service = service;
   }
 
@@ -44,7 +44,9 @@ public class GroupResource implements ApplicationContextAware {
 
   @RequestMapping(value = "", method = RequestMethod.GET)
   public List<Group> getAll() {
-    return service.findAll();
+    List<Group> result = service.findAll();
+    int x = 0;
+    return result;
   }
 
   @RequestMapping(value = "/{id}", method = RequestMethod.GET)

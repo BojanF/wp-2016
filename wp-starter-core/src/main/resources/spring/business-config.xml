@@ -13,10 +13,6 @@
 		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-<<<<<<< HEAD
-    <context:component-scan base-package="mk.ukim.finki.wp"/>
-    <import resource="classpath:spring/persistence-config.xml"/>
-=======
     <import resource="classpath:spring/persistence-config.xml"/>
 
     <!--<bean id="printer" class="mk.ukim.finki.wp.service.impl.MockPrinter"/>-->
@@ -28,5 +24,4 @@
     <context:component-scan base-package="mk.ukim.finki.wp.service"/>
 
 
->>>>>>> upstream/master
 </beans>

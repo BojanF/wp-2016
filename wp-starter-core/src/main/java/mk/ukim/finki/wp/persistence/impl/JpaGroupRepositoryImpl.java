@@ -28,6 +28,7 @@ public class JpaGroupRepositoryImpl implements GroupCrudRepository {
     Join<Object, Object> fromCourse = from.join(
       Group.FIELDS.COURSE
     );
+    int x = 0;
     return entityManager.createQuery(cq).getResultList();
 
   }

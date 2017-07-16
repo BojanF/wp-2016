@@ -15,8 +15,7 @@ hs_err_pid*
 *.iml
 *.log
 target/
-<<<<<<< HEAD
-db/
-=======
-db/
->>>>>>> upstream/master
+
+
+
+

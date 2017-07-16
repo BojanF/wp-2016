@@ -2,7 +2,6 @@
  * Created by Bojan on 11/14/2016.
  */
 
-
 (function () {
   'use strict';
 

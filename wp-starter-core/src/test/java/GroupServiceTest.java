@@ -1,7 +1,7 @@
 import mk.ukim.finki.wp.exceptions.UnexistingUpdateException;
 import mk.ukim.finki.wp.model.Group;
 import mk.ukim.finki.wp.persistence.GroupCrudRepository;
-import mk.ukim.finki.wp.service.GroupService;
+import mk.ukim.finki.wp.service.IGroupService;
 import mk.ukim.finki.wp.service.impl.InMemoryGroupService;
 import org.junit.After;
 import org.junit.Assert;
@@ -10,10 +10,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 
 /**
  * Created by ristes on 12/16/16.
@@ -25,9 +23,9 @@ public class GroupServiceTest {
 
 
   @Autowired
-  public GroupService groupService;
+  public IGroupService groupService;
 
-  public GroupService serviceWithMockRepository;
+  public IGroupService serviceWithMockRepository;
 
   Group testGroup;
   GroupCrudRepository mockRepo;
@@ -72,7 +70,7 @@ public class GroupServiceTest {
   }
 
 
-  private void testExistingUpdateWithService(GroupService groupService) {
+  private void testExistingUpdateWithService(IGroupService groupService) {
     Group groupForUpdate = new Group();
     groupForUpdate.id = testGroup.id;
     groupForUpdate.name = testGroup.name;

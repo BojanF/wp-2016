@@ -1,0 +1,157 @@
+<div class="panel panel-warning">
+  <div class="panel-heading">
+    <h4>Add or update {{vm.title}}</h4>
+  </div>
+  <form ng-submit="vm.save()" name="form">
+    <div class="panel-body">
+
+      <div class="form-group">
+
+        <div class="row">
+          <div class="col-md-4">
+            <!--<label>Name</label>
+            <input class="form-control" type="text" ng-required="true" ng-model='vm.entity.name'> -->
+
+
+            <!-- komponentata wp-input ja vrski istata rabota kako zakomentiranoto parce kod gore-->
+            <wp-input wp-label="Firstname"
+                      wp-type="text"
+                      wp-model="vm.entity.firstName"
+                      wp-required="true"
+                      wp-focus="true">
+
+            </wp-input>
+          </div>
+          <div class="col-md-4">
+            <wp-input wp-label="Lastname"
+                      wp-type="text"
+                      wp-model="vm.entity.lastName"
+                      wp-required="true">
+            </wp-input>
+          </div>
+          <div class="col-md-4">
+            <wp-input wp-label="Email"
+                      wp-type="text"
+                      wp-model="vm.entity.email"
+                      wp-required="true">
+            </wp-input>
+          </div>
+          <div class="col-md-8">
+            <label> Professor`s courses</label>
+            <ui-select multiple ng-model="vm.newCourses" theme="bootstrap" close-on-select="false" title="Choose courses">
+              <ui-select-match placeholder="Select courses..."> {{$item.name}} </ui-select-match>
+              <ui-select-choices
+                repeat="course in (vm.courses | filter:$select.search)"
+                position="auto">
+                {{course.name}}
+              </ui-select-choices>
+            </ui-select>
+          </div>
+        </div>
+      </div>
+
+      <!--<div class="form-group">-->
+        <!--<div class="row">-->
+          <!--<div class="col-md-8">-->
+            <!--<label>Size</label>-->
+            <!--<ui-select ng-model="vm.entity.groupSize"-->
+                       <!--title="Choose group size">-->
+              <!--<ui-select-match-->
+                <!--placeholder="Select group size...">-->
+                <!--<span>{{$select.selected}}</span>-->
+              <!--</ui-select-match>-->
+              <!--<ui-select-choices-->
+                <!--repeat="item in (vm.availableSizes | filter:$select.search )"-->
+                <!--position="auto">-->
+                <!--{{item}}-->
+              <!--</ui-select-choices>-->
+            <!--</ui-select>-->
+          <!--</div>-->
+          <!--<div class="col-md-4">-->
+            <!--&lt;!&ndash;<label> Number of terms</label>-->
+            <!--<input type="number" min="1" class="form-control" ng-required="true" ng-model="vm.entity.terms">&ndash;&gt;-->
+            <!--<wp-input wp-label="Number of terms"-->
+                      <!--wp-type="number"-->
+                      <!--wp-model="vm.entity.terms"-->
+                      <!--wp-required="true">-->
+            <!--</wp-input>-->
+
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    </div>
+    <!-- panel footer -->
+    <div class="panel-footer text-right">
+      <div class="panel panel-danger text-center text-danger" ng-show="vm.saveErrMsg">
+        {{vm.saveErrMsg}}
+      </div>
+      <div class="panel panel-success text-center text-success" ng-show="vm.saveOkMsg">
+        {{vm.saveOkMsg}}
+      </div>
+      <button class="btn btn-default" type="reset"
+              ng-click="vm.clear()">
+        <i class="fa fa-fw fa-refresh"></i>
+        Clear
+      </button>
+      <button class="btn btn-primary"
+              type="submit"
+              ng-disabled="form.$invalid">
+        <i class="fa fa-fw fa-save"></i>
+        Save
+      </button>
+    </div>
+
+  </form>
+
+  <!-- smart table area -->
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <table st-table="professorEntities" st-safe-src="vm.professorEntities" ng-show="vm.professorEntities.length>0" class="table table-bordered table-striped">
+      <thead>
+      <tr>
+        <th st-sort="firstName">Firstname</th>
+        <th st-sort="lastName">Lastname</th>
+        <th st-sort="email">Email</th>
+        <th>Actions</th>
+      </tr>
+      <tr>
+        <th colspan="4"> <input type="text" class="form-control"  st-search="firstName" st-delay="400" type="search" placeholder="search by professor name..."> </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="e in professorEntities | orderBy:['firstName', 'lastName'] | filter:searchProfName">
+        <td>{{e.firstName}}</td>
+        <td>{{e.lastName | uppercase}}</td>
+        <td>{{e.email}}</td>
+        <td>
+          <button class="btn btn-xs btn-default"
+                  ng-click="vm.edit(e)">
+            Edit
+          </button>
+          <button class="btn btn-xs btn-danger"
+                  ng-click="vm.remove(e)"
+                  ng-disabled="e.courses.length>0">
+            Remove
+          </button>
+        </td>
+      </tr>
+      </tbody>
+      <tfoot>
+      <tr>
+        <td colspan="5" class="text-center">
+          <div st-pagination="" st-items-by-page="10" st-displayed-pages="5"></div>
+        </td>
+      </tr>
+      </tfoot>
+    </table> </br>
+
+    <div class="panel panel-warning text-warning" ng-hide="vm.professorEntities.length>0">
+      There are no professors!
+    </div>
+  </div>
+</div>
+
+
+
+

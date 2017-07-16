@@ -1,0 +1,14 @@
+<label>Select students</label>
+<ui-select ng-model="$ctrl.gsModel"
+           ng-required="true"
+           title="Students">
+  <ui-select-match
+    placeholder="Select your student...">
+    <span>{{$select.selected.firstName+" "+$select.selected.lastName}}</span>
+  </ui-select-match>
+  <ui-select-choices
+    repeat="student in ($ctrl.students | filter:$select.search)"
+    position="auto">
+    {{student.firstName+" "+student.lastName}}
+  </ui-select-choices>
+</ui-select>

@@ -10,17 +10,6 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
-<<<<<<< HEAD
-    
-    <import resource="mvc-view-config.xml"/>
-    <context:component-scan base-package="mk.ukim.finki.wp.web"/>
-    <mvc:annotation-driven/>
-    <mvc:resources mapping="/**" location="/app/" />
-    <!-- The default path -->
-    <mvc:view-controller path="/" view-name="pizza_index" />
-    <!-- serve static resources (*.html, ...) from src/main/webapp -->
-    <mvc:default-servlet-handler/>
-=======
 
 
     <import resource="mvc-view-config.xml" />
@@ -50,10 +39,8 @@
         <!-- needed otherwise exceptions won't be logged anywhere -->
     </bean>
 
-
     <bean id="multipartResolver"
           class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
     </bean>
 
->>>>>>> upstream/master
 </beans>

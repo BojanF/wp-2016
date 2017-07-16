@@ -59,7 +59,7 @@ public class GroupRepositoryImpl implements IGroupRepository {
 
         update.set("name", entity.getName());
         update.set("groupSize", entity.getGroupSize());
-        update.set("terms", entity.getTerms());
+        //update.set("terms", entity.getTerms());
         //where clause
         update.where(cb.equal(c.get("id"), id));
         // perform update

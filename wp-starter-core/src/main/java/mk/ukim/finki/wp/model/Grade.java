@@ -10,11 +10,11 @@ import javax.validation.constraints.NotNull;
 @Table(name = "wp_grades")
 public class Grade extends BaseEntity{
 
-  @NotNull
+  //@NotNull
   @ManyToOne
   public Student student;
 
-  @NotNull
+  //@NotNull
   @ManyToOne
   public Group group;
 

@@ -6,23 +6,22 @@
     <div class="panel-body">
 
       <div class="form-group">
+        <div class="row">
         <!--<label>Name</label>
         <input class="form-control" type="text" ng-required="true" ng-model='vm.entity.name'> -->
 
 
         <!-- komponentata wp-input ja vrski istata rabota kako zakomentiranoto parce kod gore-->
-        <wp-input wp-label="Name"
-                  wp-type="text"
-                  wp-model="vm.entity.name"
-                  wp-required="true"
-                  wp-focus="true">
+          <div class="col-md-6">
+            <wp-input wp-label="Name"
+                      wp-type="text"
+                      wp-model="vm.entity.name"
+                      wp-required="true"
+                      wp-focus="true">
 
-        </wp-input>
-      </div>
-
-      <div class="form-group">
-        <div class="row">
-          <div class="col-md-8">
+            </wp-input>
+          </div>
+          <div class="col-md-6">
             <label>Size</label>
             <ui-select ng-model="vm.entity.groupSize"
                        title="Choose group size">
@@ -37,16 +36,41 @@
               </ui-select-choices>
             </ui-select>
           </div>
-          <div class="col-md-4">
-            <!--<label> Number of terms</label>
-            <input type="number" min="1" class="form-control" ng-required="true" ng-model="vm.entity.terms">-->
-            <wp-input wp-label="Number of terms"
-                      wp-type="number"
-                      wp-model="vm.entity.terms"
-                      wp-required="true">
-            </wp-input>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="row">
+
+          <div class="col-md-6">
+            <professor-select gs-model="vm.entity.professor"></professor-select>
+          </div>
+
+          <div class="col-md-6">
+            <!--<label>Select course</label>-->
+            <!--<ui-select ng-model="vm.entity.course"-->
+                       <!--ng-required="true"-->
+                       <!--title="Course name"-->
+                       <!--ng-show="vm.entity.professor.courses.length>0">-->
+              <!--<ui-select-match-->
+                <!--placeholder="Select course...">-->
+                <!--<span>{{$select.selected.name}}</span>-->
+              <!--</ui-select-match>-->
+              <!--<ui-select-choices-->
+                <!--repeat="course in (vm.entity.professor.courses | filter:$select.search)"-->
+                <!--position="auto">-->
+                <!--{{course.name}}-->
+              <!--</ui-select-choices>-->
+            <!--</ui-select>-->
+            <!--<div class="panel panel-danger text-danger" ng-hide="vm.entity.professor.courses.length>0">-->
+              <!--Professor has no courses assigned to him!!!-->
+            <!--</div>-->
+
+            <course-select gs-model="vm.entity.course" courses="vm.entity.professor.courses"></course-select>
 
           </div>
+
+
         </div>
       </div>
     </div>
@@ -74,23 +98,25 @@
 </div>
 <div class="row">
   <div class="col-md-12">
-    <table ng-show="vm.entities.length>0" class="table table-bordered table-striped">
+    <table st-table="labGroupsEntities" st-safe-src="vm.labGroupsEntities" ng-show="vm.labGroupsEntities.length>0" class="table table-bordered table-striped">
       <thead>
         <tr>
-          <th>Group Name</th>
-          <th>Group Size</th>
-          <th>Number of terms</th>
+          <th st-sort="name">Group Name</th>
+          <th st-sort="groupSize">Group Size</th>
+          <th st-sort="professor.lastName">Professor</th>
+          <th st-sort="course.name">Course</th>
           <th>Actions</th>
         </tr>
         <tr>
-          <th colspan="4"> <input type="text" class="form-control" ng-model="searchGrName.name" placeholder="search by group name..."> </th>
+          <th colspan="5"> <input type="text" class="form-control" st-search="name" st-delay="400" type="search" placeholder="search by group name..."> </th>
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="e in vm.entities | orderBy:['name', 'terms'] | filter:searchGrName">
+        <tr ng-repeat="e in labGroupsEntities | orderBy:['name'] | filter:searchGrName">
           <td>{{e.name}}</td>
           <td>{{e.groupSize}}</td>
-          <td>{{e.terms}}</td>
+          <td>{{e.professor.firstName + " " + e.professor.lastName}}</td>
+          <td>{{e.course.name}}</td>
           <td>
             <button class="btn btn-xs btn-default"
                     ng-click="vm.edit(e)">
@@ -103,9 +129,16 @@
           </td>
         </tr>
       </tbody>
+      <tfoot>
+      <tr>
+        <td colspan="5" class="text-center">
+          <div st-pagination="" st-items-by-page="10" st-displayed-pages="5"></div>
+        </td>
+      </tr>
+      </tfoot>
     </table> </br>
 
-    <div class="panel panel-warning text-warning" ng-hide="vm.entities.length>0">
+    <div class="panel panel-warning text-warning" ng-hide="vm.labGroupsEntities.length>0">
       There are no groups!
     </div>
   </div>

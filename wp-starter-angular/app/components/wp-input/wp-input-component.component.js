@@ -13,7 +13,9 @@
         wpType: '@',
         wpModel: '=',
         wpRequired: '@',
-        wpFocus: "@"
+        wpFocus: "@",
+        wpMin: '=',
+        wpMax: '='
       },
       controller: InputComponent
 

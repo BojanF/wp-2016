@@ -1,0 +1,100 @@
+/**
+ * Created by Bojan on 7/7/2017.
+ */
+
+(function (angular) {
+  'use strict';
+
+  angular
+    .module('wp-angular-starter')
+    .controller('ProfessorController', ProfessorController);
+
+  ProfessorController.$inject = ['$log', 'ProfessorService', 'CourseService'];
+
+  /* @ngInject */
+  function ProfessorController($log, ProfessorService, CourseService) {
+    var vm = this;
+    vm.title = 'Professor';
+    vm.save = save;
+    vm.clear = clear;
+    vm.edit = edit;
+    vm.remove = remove;
+    vm.addCourse = addCourse;
+    vm.newCourses = [];
+    vm.entity = {};
+    vm.professorEntities = [];
+    vm.saveOkMsg = null;
+    vm.saveErrMsg = null;
+    vm.coursesShow = false;
+    vm.courses = [];
+    //vm.availableSizes = [20, 40];
+    loadProfessors();
+    loadCourses();
+
+    function loadProfessors() {
+      //debugger;
+      //controller
+      ProfessorService.getAll().then(function (data) {
+        vm.professorEntities = data;
+      });
+    }
+
+    function loadCourses() {
+      //debugger;
+      CourseService.getAll().then(function (data) {
+        vm.courses = data;
+      });
+    }
+
+    function save() {
+      vm.saveOkMsg = null;
+      vm.saveErrMsg = null;
+      vm.coursesShow = false;
+
+      addCourse();
+
+      var promise = ProfessorService.save(vm.entity);
+
+      promise.then(successCallback, errorCallback);
+      function successCallback(data) {
+        $log.debug(vm.entity.name);
+        loadProfessors();
+        vm.saveOkMsg = "Professor with id " + data.id + " is saved";
+        clear();
+      }
+
+      function errorCallback(data) {
+        vm.saveErrMsg = "Saving error occurred: " + data.message;
+      }
+    }
+
+    function clear() {
+      vm.coursesShow = false;
+      vm.entity = {};
+    }
+
+    function edit(entity) {
+      vm.entity = {};
+      vm.coursesShow = true;
+      angular.extend(vm.entity, entity);
+    }
+
+    function remove(entity) {
+      ProfessorService
+        .remove(entity)
+        .then(function () {
+          loadProfessors();
+        });
+    }
+
+    function addCourse(){
+      if(vm.entity.courses == undefined)
+        vm.entity.courses = [];
+      for(var i=0 ; i<vm.newCourses.length ; i++) {
+        vm.entity.courses.push(vm.newCourses[i]);
+      }
+      vm.newCourses = [];
+    }
+  }
+
+})(angular);

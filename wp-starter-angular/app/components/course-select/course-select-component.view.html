@@ -1,0 +1,18 @@
+<label>Select course</label>
+<ui-select ng-model="$ctrl.gsModel"
+           ng-required="true"
+           title="Course name"
+           ng-show="$ctrl.courses.length>0">
+  <ui-select-match
+    placeholder="Select course...">
+    <span>{{$select.selected.name}}</span>
+  </ui-select-match>
+  <ui-select-choices
+    repeat="course in ($ctrl.courses | filter:$select.search)"
+    position="auto">
+    {{course.name}}
+  </ui-select-choices>
+</ui-select>
+<div class="panel panel-danger text-danger" ng-hide="$ctrl.courses.length>0">
+  Professor has no courses assigned to him!!!
+</div>

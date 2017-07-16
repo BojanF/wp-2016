@@ -1,0 +1,14 @@
+<label>Select professor</label>
+<ui-select ng-model="$ctrl.gsModel"
+           ng-required="true"
+           title="Professor">
+  <ui-select-match
+    placeholder="Select your professor...">
+    <span>{{$select.selected.firstName+" "+$select.selected.lastName}}</span>
+  </ui-select-match>
+  <ui-select-choices
+    repeat="professor in ($ctrl.professors | filter:$select.search)"
+    position="auto">
+    {{professor.firstName+" "+professor.lastName}}
+  </ui-select-choices>
+</ui-select>

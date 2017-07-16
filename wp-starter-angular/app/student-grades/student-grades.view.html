@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<div class="panel panel-success">
+  <div class="panel-heading">
+    <h4>{{vm.title}}</h4>
+  </div>
+  <form ng-submit="vm.getGrades()" name="form">
+    <div class="panel-body">
+
+      <div class="form-group">
+
+        <div class="row">
+          <div class="col-md-12">
+            <student-select gs-model="vm.studentEntity" students="vm.studentEntities"></student-select>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+    <!-- panel footer -->
+    <div class="panel-footer text-right">
+      <button class="btn btn-primary"
+              type="submit"
+              ng-disabled="form.$invalid">
+        <i class="fa fa-fw fa-search"></i>
+        Search
+      </button>
+    </div>
+
+  </form>
+</div>
+<!-- Lista od studenti -->
+<!-- smart table area -->
+<div class="row">
+  <div class="col-md-12">
+    <table st-table="studentGrades" st-safe-src="vm.studentGrades" ng-show="vm.studentGrades.length>0" class="table table-bordered table-striped">
+      <thead>
+      <tr>
+        <th>Professor</th>
+        <th>Course</th>
+        <th>Lab group</th>
+        <th st-sort="gradeValue">Grade</th>
+      </tr>
+      <tr>
+        <th colspan="5"> <input placeholder="search by grade..." st-search="gradeValue" st-delay="400" type="search" class="form-control"/> </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="grade in studentGrades">
+        <td>{{grade.professor.firstName + " " + grade.professor.lastName}} </td>
+        <td>{{grade.group.course.name}}</td>
+        <td>{{grade.group.name}}</td>
+        <td>{{grade.gradeValue}}</td>
+      </tr>
+      </tbody>
+      <tfoot>
+      <tr>
+        <td colspan="5" class="text-center">
+          <div st-pagination="" st-items-by-page="10" st-displayed-pages="5"></div>
+        </td>
+      </tr>
+      </tfoot>
+    </table> </br>
+
+    <div class="panel panel-warning text-warning" ng-hide="vm.studentGrades.length>0">
+      There are no grades!
+    </div>
+  </div>
+</div>

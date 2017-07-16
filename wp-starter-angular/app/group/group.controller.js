@@ -5,10 +5,10 @@
     .module('wp-angular-starter')
     .controller('GroupController', GroupController);
 
-  GroupController.$inject = ['$log', 'GroupService'];
+  GroupController.$inject = ['$log', 'GroupService', 'ProfessorService', 'CourseService'];
 
   /* @ngInject */
-  function GroupController($log, GroupService) {
+  function GroupController($log, GroupService, ProfessorService, CourseService) {
     var vm = this;
     vm.title = 'Group';
     vm.save = save;
@@ -16,16 +16,34 @@
     vm.edit = edit;
     vm.remove = remove;
     vm.entity = {};
-    vm.entities = [];
+    vm.labGroupsEntities = [];
     vm.saveOkMsg = null;
     vm.saveErrMsg = null;
     vm.availableSizes = [20, 40];
+    vm.professors = [];
+    vm.courses = [];
     loadGroups();
+    // loadProfessors();
+    // loadCourses();
 
     function loadGroups() {
       GroupService.getAll().then(function (data) {
-        vm.entities = data;
+        vm.labGroupsEntities = data;
       });
+    }
+
+    function loadProfessors(){
+      ProfessorService.getAll().then(function (data) {
+        vm.professors = data;
+
+      })
+    }
+
+    function loadCourses(){
+      CourseService.getAll().then(function (data) {
+        vm.courses = data;
+
+      })
     }
 
     function save() {
@@ -52,6 +70,7 @@
     }
 
     function edit(entity) {
+      //za d se poplni vo view-to
       vm.entity = {};
       angular.extend(vm.entity, entity);
     }

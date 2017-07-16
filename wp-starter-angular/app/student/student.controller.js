@@ -8,10 +8,10 @@
     .module('wp-angular-starter')
     .controller('StudentController', StudentController);
 
-  StudentController.$inject = ['$log', 'StudentService', 'GroupService'];
+  StudentController.$inject = ['$log', 'StudentService'];
 
   /* @ngInject */
-  function StudentController($log, StudentService, GroupService) {
+  function StudentController($log, StudentService) {
     var vm = this;
     vm.title = 'Student';
     vm.save = saveStudent;
@@ -24,14 +24,6 @@
     vm.saveErrMsg = null;
     vm.LabGroups = [];
     loadStudents();
-    loadGroups();
-
-    function loadGroups(){
-      GroupService.getAll().then(function(data){
-        vm.LabGroups = data;
-      });
-    }
-
 
     function loadStudents() {
       StudentService.getAll().then(function (data) {

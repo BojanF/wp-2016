@@ -18,7 +18,7 @@
             <!-- komponentata wp-input ja vrski istata rabota kako zakomentiranoto parce kod gore-->
             <wp-input wp-label="Name"
                       wp-type="text"
-                      wp-model="vm.studentEntity.name"
+                      wp-model="vm.studentEntity.firstName"
                       wp-required="true"
                       wp-focus="true">
             </wp-input>
@@ -30,7 +30,7 @@
             <!-- komponentata wp-input ja vrski istata rabota kako zakomentiranoto parce kod gore-->
             <wp-input wp-label="Surename"
                       wp-type="text"
-                      wp-model="vm.studentEntity.surename"
+                      wp-model="vm.studentEntity.lastName"
                       wp-required="true">
             </wp-input>
           </div>
@@ -44,14 +44,21 @@
             <input type="text" class="form-control" ng-required="true" ng-model="vm.studentEntity.index">-->
 
             <!-- komponentata wp-input ja vrski istata rabota kako zakomentiranoto parce kod gore-->
+            <wp-input wp-label="Email"
+                      wp-type="text"
+                      wp-model="vm.studentEntity.email"
+                      wp-required="true">
+            </wp-input>
+          </div>
+          <div class="col-md-6">
             <wp-input wp-label="Index"
-                      wp-type="number"
+                      wp-type="text"
                       wp-model="vm.studentEntity.index"
                       wp-required="true">
             </wp-input>
           </div>
           <!-- dropdown za grupite-->
-          <div class="col-md-6">
+          <!--<div class="col-md-6">-->
             <!--<label>Select your Lab group</label>
             <ui-select ng-model="vm.studentEntity.LabGroup"
                        ng-required="true"
@@ -67,8 +74,8 @@
               </ui-select-choices>
             </ui-select>-->
             <!-- mesto zakomentiranoto gore -->
-            <group-select gs-model="vm.studentEntity.LabGroup"></group-select>
-          </div>
+            <!--<group-select gs-model="vm.studentEntity.LabGroup"></group-select>-->
+          <!--</div>-->
 
         </div>
       </div>
@@ -96,15 +103,16 @@
   </form>
 </div>
 <!-- Lista od studenti -->
+<!-- smart table area -->
 <div class="row">
     <div class="col-md-12">
     <table st-table="studentEntities" st-safe-src="vm.studentEntities" ng-show="vm.studentEntities.length>0" class="table table-bordered table-striped">
       <thead>
         <tr>
-          <th st-sort="name">Name</th>
-          <th st-sort="surename">Surename</th>
+          <th st-sort="firstName">Firstname</th>
+          <th st-sort="lastName">Lastname</th>
+          <th st-sort="email">Email</th>
           <th st-sort="index">Index</th>
-          <th st-sort="LabGroup.name">Group</th>
           <th>Actions</th>
         </tr>
         <tr>
@@ -113,10 +121,10 @@
       </thead>
       <tbody>
         <tr ng-repeat="e in studentEntities">
-          <td>{{e.name}}</td>
-          <td>{{e.surename | uppercase}}</td>
+          <td>{{e.firstName}}</td>
+          <td>{{e.lastName | uppercase}}</td>
+          <td>{{e.email}} </td>
           <td>{{e.index}}</td>
-          <td>{{e.LabGroup.name}} </td>
           <td>
             <button class="btn btn-xs btn-default"
                     ng-click="vm.edit(e)">
@@ -132,7 +140,7 @@
       <tfoot>
         <tr>
           <td colspan="5" class="text-center">
-            <div st-pagination="" st-items-by-page="3" st-displayed-pages="3"></div>
+            <div st-pagination="" st-items-by-page="10" st-displayed-pages="5"></div>
           </td>
         </tr>
       </tfoot>

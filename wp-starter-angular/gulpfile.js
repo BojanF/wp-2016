@@ -21,29 +21,69 @@ var JS_APP = [
   'app/c1/c1.state.js',
   'app/c1/first.controller.js',
   'app/c1/second.controller.js',
+  'app/default-page/**.js',
+
+  //group
   'app/group/group.state.js',
   'app/group/group.controller.js',
-<<<<<<< HEAD
   //'app/group/group.local.factory.js',//ova treba da se smeni lab6
-  'app/group/group-service-remote.js', // za lab6
-=======
-  'app/group/group.remote.factory.js',
->>>>>>> upstream/master
-  'app/default-page/**.js',
-  'app/student/student.controller.js',
+  'app/group/group-service.remote.js', // za lab6
+
+  //student
   'app/student/student.state.js',
-  'app/student/student.local.factory.js',
+  'app/student/student.controller.js',
+  'app/student/student-service.remote.js',
+
+  //professor
+  'app/professor/professor.state.js',
+  'app/professor/professor.controller.js',
+  'app/professor/professor-service.remote.js',
+
+  //course
+  'app/course/course.state.js',
+  'app/course/course.controller.js',
+  'app/course/course-service.remote.js',
+
+  //new-grade
+  'app/new-grade/new-grade.state.js',
+  'app/new-grade/new-grade.controller.js',
+  'app/new-grade/new-grade-service.remote.js',
+
+  //student-grades
+  'app/student-grades/student-grades.state.js',
+  'app/student-grades/student-grades.controller.js',
+  'app/student-grades/student-grades-service.remote.js',
+
+  //professor-grades
+  'app/professor-grades/professor-grades.state.js',
+  'app/professor-grades/professor-grades.controller.js',
+  'app/professor-grades/professor-grades-service.remote.js',
+
+  //directives
   'app/directives/showcase-directive/showcase-directive.directive.js',
   'app/directives/wp-combo/wp-combo.directive.js',
+
+  //components
   'app/components/wp-input/wp-input-component.component.js',
-  'app/components/group-select/group-select-component.component.js'
+  'app/components/group-select/group-select-component.component.js',
+  'app/components/professor-select/professor-select-component.component.js',
+  'app/components/course-select/course-select-component.component.js',
+  'app/components/student-select/student-select-component.component.js'
 
 ];
 
 var TEMPLATES_SRC = [
+  'app/default-page/**.html',
+
+  //entities views
   'app/group/group.view.html',
   'app/student/student.view.html',
-  'app/default-page/**.html'
+  'app/professor/professor.view.html',
+  'app/course/course.view.html',
+  'app/new-grade/new-grade.view.html',
+  'app/student-grades/student-grades.view.html',
+  'app/professor-grades/professor-grades.view.html'
+
 ];
 
 var CSS_APP = [
@@ -69,10 +109,7 @@ var JS_LIB = [
   'bower_components/momentjs/moment.js',
   'bower_components/angular-ui-router/release/angular-ui-router.js',
   'bower_components/angular-ui-select/dist/select.js',
-<<<<<<< HEAD
   'bower-components/angular-smart-table/dist/smart-table.js',
-=======
->>>>>>> upstream/master
   'bower_components/angular-resource/angular-resource.js'
 ];
 
@@ -95,12 +132,12 @@ var MODULE_NAME = 'wp-angular-starter';
 /**
  * The URL of the back-end API
  */
-<<<<<<< HEAD
-//staro pred lab6
-//var API_URL = 'http://localhost:8080/servlet-showcase/api';
-//novo za lab6
-=======
->>>>>>> upstream/master
+// <<<<<<< HEAD
+// staro pred lab6
+// var API_URL = 'http://localhost:8080/servlet-showcase/api';
+// novo za lab6
+// =======
+// >>>>>>> upstream/master
 var API_URL = 'http://localhost:8080/api';
 /**
  * Route to which the API calls will be mapped

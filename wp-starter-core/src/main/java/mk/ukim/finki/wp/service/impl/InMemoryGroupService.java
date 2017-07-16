@@ -3,7 +3,7 @@ package mk.ukim.finki.wp.service.impl;
 import mk.ukim.finki.wp.exceptions.UnexistingUpdateException;
 import mk.ukim.finki.wp.model.Group;
 import mk.ukim.finki.wp.persistence.GroupCrudRepository;
-import mk.ukim.finki.wp.service.GroupService;
+import mk.ukim.finki.wp.service.IGroupService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +15,9 @@ import java.util.*;
  * Created by ristes on 12/2/16.
  */
 @Service
-public class InMemoryGroupService implements GroupService {
+public class InMemoryGroupService implements IGroupService {
 
-  static final Logger logger = LoggerFactory.getLogger(GroupService.class);
+  static final Logger logger = LoggerFactory.getLogger(IGroupService.class);
 
   GroupCrudRepository repository;
 
