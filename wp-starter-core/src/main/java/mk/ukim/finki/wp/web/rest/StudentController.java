@@ -33,13 +33,13 @@ public class StudentController {
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public Student save(@Valid @RequestBody Student professor) {
-        return studentService.insert(professor);
+    public Student save(@Valid @RequestBody Student student) {
+        return studentService.insert(student);
     }
 
     @RequestMapping(value = "", method = RequestMethod.PUT)
-    public void updateStudent(@RequestBody Student professor) {
-        studentService.update(professor);
+    public void updateStudent(@RequestBody Student student) {
+        studentService.update(student);
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)

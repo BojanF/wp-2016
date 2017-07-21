@@ -13,8 +13,7 @@
         <div class="row">
           <div class="col-md-6">
             <!--<label>Name</label>
-            <input class="form-control" type="text" ng-required="true" ng-model="vm.studentEntity.name">-->
-
+            <input class="form-control" type="text" ng-required="true" ng-model="vm.studentEntity.firstName">-->
             <!-- komponentata wp-input ja vrski istata rabota kako zakomentiranoto parce kod gore-->
             <wp-input wp-label="Name"
                       wp-type="text"
@@ -24,10 +23,6 @@
             </wp-input>
           </div>
           <div class="col-md-6">
-            <!--<label> Surname </label>
-            <input class="form-control" type="text" ng-required="true" ng-model="vm.studentEntity.surename">-->
-
-            <!-- komponentata wp-input ja vrski istata rabota kako zakomentiranoto parce kod gore-->
             <wp-input wp-label="Surename"
                       wp-type="text"
                       wp-model="vm.studentEntity.lastName"
@@ -57,26 +52,6 @@
                       wp-required="true">
             </wp-input>
           </div>
-          <!-- dropdown za grupite-->
-          <!--<div class="col-md-6">-->
-            <!--<label>Select your Lab group</label>
-            <ui-select ng-model="vm.studentEntity.LabGroup"
-                       ng-required="true"
-                       title="Lab group ">
-              <ui-select-match
-                placeholder="Select your Lab group...">
-                <span>{{$select.selected.name}}</span>
-              </ui-select-match>
-              <ui-select-choices
-                repeat="group in (vm.LabGroups | filter:$select.search)"
-                position="auto">
-                {{group.name}}
-              </ui-select-choices>
-            </ui-select>-->
-            <!-- mesto zakomentiranoto gore -->
-            <!--<group-select gs-model="vm.studentEntity.LabGroup"></group-select>-->
-          <!--</div>-->
-
         </div>
       </div>
     </div>
@@ -105,8 +80,14 @@
 <!-- Lista od studenti -->
 <!-- smart table area -->
 <div class="row">
-    <div class="col-md-12">
-    <table st-table="studentEntities" st-safe-src="vm.studentEntities" ng-show="vm.studentEntities.length>0" class="table table-bordered table-striped">
+  <div class="col-md-12">
+    <div ng-show="vm.uiState.loadGif">
+      <img src="pictures//loading.gif" style="width:20px; height:20px;">
+    </div>
+
+    <br>
+
+    <table st-table="studentEntities" st-safe-src="vm.studentEntities" ng-show="vm.uiState.showStudents" class="table table-bordered table-striped">
       <thead>
         <tr>
           <th st-sort="firstName">Firstname</th>
@@ -146,7 +127,7 @@
       </tfoot>
     </table> </br>
 
-    <div class="panel panel-warning text-warning" ng-hide="vm.studentEntities.length>0">
+    <div class="panel panel-danger text-danger" ng-show="vm.uiState.showNoStudentsPanel">
       There are no students!
     </div>
   </div>

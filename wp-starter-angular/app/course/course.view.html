@@ -1,3 +1,4 @@
+
 <div class="panel panel-default">
   <div class="panel-heading">
     <h4>Add or update {{vm.title}}</h4>
@@ -8,7 +9,7 @@
       <div class="form-group">
 
         <div class="row">
-          <div class="col-md-12">
+          <div class="col-md-6">
             <!--<label>Name</label>
             <input class="form-control" type="text" ng-required="true" ng-model='vm.entity.name'> -->
             <!-- komponentata wp-input ja vrski istata rabota kako zakomentiranoto parce kod gore-->
@@ -17,8 +18,34 @@
                       wp-model="vm.entity.name"
                       wp-required="true"
                       wp-focus="true">
-
             </wp-input>
+          </div>
+          <div class="col-md-6">
+            <wp-input wp-label="Course short name"
+                      wp-type="text"
+                      wp-model="vm.entity.shortName"
+                      wp-required="true">
+            </wp-input>
+          </div>
+          <div class="col-md-8">
+
+
+
+            <label> Select professors </label>
+            <ui-select ng-show="vm.uiState.professors.showProfessors" multiple ng-model="vm.selectedProfessors" theme="bootstrap" close-on-select="false" title="Choose courses">
+              <ui-select-match placeholder="Select courses..."> {{$item.firstName+" "+$item.lastName}} </ui-select-match>
+              <ui-select-choices
+                repeat="professor in (vm.professors | filter:$select.search)"
+                position="auto">
+                {{professor.firstName+" "+professor.lastName}}
+              </ui-select-choices>
+            </ui-select>
+            <div ng-show="vm.uiState.professors.loadGif">
+              <img src="pictures//loading.gif" style="width:20px; height:20px;">
+            </div>
+            <div class="panel panel-danger text-danger" ng-show="vm.uiState.professors.showNoProfessorsPanel">
+              There are no professors in the system!
+            </div>
           </div>
         </div>
       </div>
@@ -52,10 +79,17 @@
 </div>
 <div class="row">
   <div class="col-md-12">
-    <table st-table="courseEntities" st-safe-src="vm.courseEntities" ng-show="vm.courseEntities.length>0" class="table table-bordered table-striped">
+    <div ng-show="vm.uiState.courses.loadGif">
+      <img src="pictures//loading.gif" style="width:20px; height:20px;">
+    </div>
+
+    <br>
+
+    <table st-table="courseEntities" st-safe-src="vm.courseEntities" ng-show="vm.uiState.courses.showCourses" class="table table-bordered table-striped">
       <thead>
       <tr>
         <th st-sort="name">Name</th>
+        <th st-sort="shortName">Short name</th>
         <th>Actions</th>
       </tr>
       <tr>
@@ -65,6 +99,7 @@
       <tbody>
       <tr ng-repeat="e in courseEntities | orderBy:['name'] | filter:searchProfName">
         <td>{{e.name}}</td>
+        <td>{{e.shortName}}</td>
         <td>
           <button class="btn btn-xs btn-default"
                   ng-click="vm.edit(e)">
@@ -84,11 +119,14 @@
         </td>
       </tr>
       </tfoot>
-    </table> </br>
+    </table>
 
-    <div class="panel panel-warning text-warning" ng-hide="vm.courseEntities.length>0">
+    </br>
+
+    <div class="panel panel-warning text-warning" ng-show="vm.uiState.courses.showNoCoursesPanel">
       There are no courses!
     </div>
+
   </div>
 </div>
 

@@ -29,12 +29,12 @@ public class Group extends BaseEntity {
     }
 
     public static class FIELDS {
-    public static String ID = "id";
-    public static String NAME = "name";
-    public static String GROUP_SIZE = "groupSize";
-    public static String COURSE = "course";
-    public static String PROFESSORS = "professor";
-  }
+        public static String ID = "id";
+        public static String NAME = "name";
+        public static String GROUP_SIZE = "groupSize";
+        public static String COURSE = "course";
+        public static String PROFESSOR = "professor";
+    }
 
   @NotNull
   public String name;

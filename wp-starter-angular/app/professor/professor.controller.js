@@ -27,7 +27,18 @@
     vm.saveErrMsg = null;
     vm.coursesShow = false;
     vm.courses = [];
-    //vm.availableSizes = [20, 40];
+    vm.uiState = {
+      professors: {
+        loadGif: true,
+        showProfessorsTable: false,
+        showNoProfessorsPanel: false
+      },
+      courses:{
+        loadGif: true,
+        showCoursesMenu: false,
+        showNoCoursesPanel: false
+      }
+    }
     loadProfessors();
     loadCourses();
 
@@ -36,6 +47,17 @@
       //controller
       ProfessorService.getAll().then(function (data) {
         vm.professorEntities = data;
+
+        vm.uiState.professors.loadGif = false;
+        if(vm.professorEntities.length > 0){
+          vm.uiState.professors.showProfessorsTable = true;
+          vm.uiState.professors.showNoProfessorsPanel = false;
+        }
+        else{
+          vm.uiState.professors.showProfessorsTable = false;
+          vm.uiState.professors.showNoProfessorsPanel = true;
+        }
+
       });
     }
 
@@ -43,10 +65,22 @@
       //debugger;
       CourseService.getAll().then(function (data) {
         vm.courses = data;
+
+        vm.uiState.courses.loadGif = false;
+        if(vm.courses.length > 0){
+          vm.uiState.courses.showCoursesMenu = true;
+          vm.uiState.courses.showNoCoursesPanel = false;
+        }
+        else{
+          vm.uiState.courses.showCoursesMenu = false;
+          vm.uiState.courses.showNoCoursesPanel = true;
+        }
       });
     }
 
     function save() {
+      vm.uiState.professors.loadGif = true;
+      vm.uiState.professors.showNoProfessorsPanel = false;
       vm.saveOkMsg = null;
       vm.saveErrMsg = null;
       vm.coursesShow = false;
@@ -80,6 +114,7 @@
     }
 
     function remove(entity) {
+      vm.uiState.professors.loadGif = true;
       ProfessorService
         .remove(entity)
         .then(function () {

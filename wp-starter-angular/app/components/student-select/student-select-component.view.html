@@ -1,7 +1,8 @@
-<label>Select students</label>
+<label>Select student</label>
 <ui-select ng-model="$ctrl.gsModel"
            ng-required="true"
-           title="Students">
+           title="Students"
+           ng-show="$ctrl.students.length>0">
   <ui-select-match
     placeholder="Select your student...">
     <span>{{$select.selected.firstName+" "+$select.selected.lastName}}</span>
@@ -12,3 +13,7 @@
     {{student.firstName+" "+student.lastName}}
   </ui-select-choices>
 </ui-select>
+
+<div class="panel panel-danger text-danger" ng-hide="$ctrl.students.length>0">
+  There are no students in the system!!!
+</div>

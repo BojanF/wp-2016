@@ -20,16 +20,27 @@
     vm.clear = clear;
     vm.edit = edit;
     vm.remove = remove;
-    // vm.addCourse = addCourse;
-    // vm.newCourses = [];
     vm.entity = {};
-    vm.professorEntities = [];
+
     vm.saveOkMsg = null;
     vm.saveErrMsg = null;
-    // vm.coursesShow = false;
+    vm.professors = [];
     vm.groups = [];
     vm.students = [];
-      //vm.availableSizes = [20, 40];
+    vm.uiState = {
+      professors:{
+        loadGif: true,
+        showProfessors: false
+      },
+      students:{
+        loadGif: true,
+        showStudents: false
+      },
+      groups:{
+        loadGif: true,
+        showGroups: false
+      }
+    }
     loadProfessors();
     loadGroups();
     loadStudents();
@@ -38,6 +49,8 @@
       StudentService.getAll().then(function (data) {
         vm.students = data;
 
+        vm.uiState.students.loadGif = false;
+        vm.uiState.students.showStudents = true;
       })
     }
 
@@ -45,7 +58,10 @@
       //debugger;
       //controller
       ProfessorService.getAll().then(function (data) {
-        vm.professorEntities = data;
+        vm.professors = data;
+
+        vm.uiState.professors.loadGif = false
+        vm.uiState.professors.showProfessors = true;
       });
     }
 
@@ -53,20 +69,15 @@
       //debugger;
       GroupService.getAll().then(function (data) {
         vm.groups = data;
+
+        vm.uiState.groups.loadGif = false;
+        vm.uiState.groups.showGroups = true;
       });
     }
 
     function save() {
       vm.saveOkMsg = null;
       vm.saveErrMsg = null;
-      // vm.coursesShow = false;
-      //debugger;
-      // if(vm.entity.courses == undefined)
-      //   vm.entity.courses = [];
-      // for(var i=0 ; i<vm.newCourses.length ; i++) {
-      //   vm.entity.courses.push(vm.newCourses[i]);
-      // }
-      // vm.newCourses = [];
       var promise = NewGradeService.save(vm.entity);
 
       promise.then(successCallback, errorCallback);
@@ -83,13 +94,11 @@
     }
 
     function clear() {
-      // vm.coursesShow = false;
       vm.entity = {};
     }
 
     function edit(entity) {
       vm.entity = {};
-      // vm.coursesShow = true;
       angular.extend(vm.entity, entity);
     }
 
@@ -101,12 +110,6 @@
         });
     }
 
-    // function addCourse(newGradeEntity, courseEntity){
-    //   debugger;
-    //   newGradeEntity.courses.push(courseEntity);
-    //   vm.entity = newGradeEntity;
-    //   save();
-    // }
   }
 
 })(angular);

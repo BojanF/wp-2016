@@ -1,5 +1,6 @@
 package mk.ukim.finki.wp.service;
 
+import mk.ukim.finki.wp.model.Course;
 import mk.ukim.finki.wp.model.Professor;
 
 import java.util.List;
@@ -18,5 +19,7 @@ public interface IProfessorService {
     Professor update(Professor professor);
 
     void deleteById(Long id);
+
+    List<Course> findCoursesNotAssignedToHim(Long professorId);
 
 }

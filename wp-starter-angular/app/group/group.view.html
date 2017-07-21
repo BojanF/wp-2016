@@ -7,11 +7,9 @@
 
       <div class="form-group">
         <div class="row">
-        <!--<label>Name</label>
-        <input class="form-control" type="text" ng-required="true" ng-model='vm.entity.name'> -->
-
-
-        <!-- komponentata wp-input ja vrski istata rabota kako zakomentiranoto parce kod gore-->
+          <!--<label>Name</label>
+          <input class="form-control" type="text" ng-required="true" ng-model='vm.entity.name'> -->
+          <!-- komponentata wp-input ja vrski istata rabota kako zakomentiranoto parce kod gore-->
           <div class="col-md-6">
             <wp-input wp-label="Name"
                       wp-type="text"
@@ -43,31 +41,15 @@
         <div class="row">
 
           <div class="col-md-6">
-            <professor-select gs-model="vm.entity.professor"></professor-select>
+            <div ng-show="vm.uiState.professors.loadGif">
+              <label>Select professor</label><br>
+              <img src="pictures//loading.gif" style="width:20px; height:20px;">
+            </div>
+            <professor-select ng-show="vm.uiState.professors.showProfessors" gs-model="vm.entity.professor" professors="vm.professors"></professor-select>
           </div>
 
           <div class="col-md-6">
-            <!--<label>Select course</label>-->
-            <!--<ui-select ng-model="vm.entity.course"-->
-                       <!--ng-required="true"-->
-                       <!--title="Course name"-->
-                       <!--ng-show="vm.entity.professor.courses.length>0">-->
-              <!--<ui-select-match-->
-                <!--placeholder="Select course...">-->
-                <!--<span>{{$select.selected.name}}</span>-->
-              <!--</ui-select-match>-->
-              <!--<ui-select-choices-->
-                <!--repeat="course in (vm.entity.professor.courses | filter:$select.search)"-->
-                <!--position="auto">-->
-                <!--{{course.name}}-->
-              <!--</ui-select-choices>-->
-            <!--</ui-select>-->
-            <!--<div class="panel panel-danger text-danger" ng-hide="vm.entity.professor.courses.length>0">-->
-              <!--Professor has no courses assigned to him!!!-->
-            <!--</div>-->
-
             <course-select gs-model="vm.entity.course" courses="vm.entity.professor.courses"></course-select>
-
           </div>
 
 
@@ -98,7 +80,14 @@
 </div>
 <div class="row">
   <div class="col-md-12">
-    <table st-table="labGroupsEntities" st-safe-src="vm.labGroupsEntities" ng-show="vm.labGroupsEntities.length>0" class="table table-bordered table-striped">
+
+    <div ng-show="vm.uiState.labGroups.loadGif">
+      <img src="pictures//loading.gif" style="width:20px; height:20px;">
+    </div>
+
+    <br>
+
+    <table st-table="labGroupsEntities" st-safe-src="vm.labGroupsEntities" ng-show="vm.uiState.labGroups.showGroups" class="table table-bordered table-striped">
       <thead>
         <tr>
           <th st-sort="name">Group Name</th>
@@ -136,9 +125,11 @@
         </td>
       </tr>
       </tfoot>
-    </table> </br>
+    </table>
 
-    <div class="panel panel-warning text-warning" ng-hide="vm.labGroupsEntities.length>0">
+    </br>
+
+    <div class="panel panel-danger text-danger" ng-show="vm.uiState.labGroups.showNoGroupsPanel">
       There are no groups!
     </div>
   </div>

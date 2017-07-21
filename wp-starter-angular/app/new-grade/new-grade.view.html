@@ -9,16 +9,31 @@
 
         <div class="row">
           <div class="col-md-6">
-            <student-select gs-model="vm.entity.student" students="vm.students"></student-select>
+            <div ng-show="vm.uiState.students.loadGif">
+              <label>Select student</label>
+              <br>
+              <img src="pictures//loading.gif" style="width:20px; height:20px;">
+            </div>
+            <student-select ng-show="vm.uiState.students.showStudents" gs-model="vm.entity.student" students="vm.students"></student-select>
           </div>
           <div class="col-md-6">
-            <group-select gs-model="vm.entity.group"></group-select>
+            <div ng-show="vm.uiState.groups.loadGif">
+              <label>Select laboratory group</label>
+              <br>
+              <img src="pictures//loading.gif" style="width:20px; height:20px;">
+            </div>
+            <group-select ng-show="vm.uiState.groups.showGroups" gs-model="vm.entity.group" groups="vm.groups"></group-select>
           </div>
         </div>
         <br>
         <div class="row">
           <div class="col-md-6">
-            <professor-select gs-model="vm.entity.professor"></professor-select>
+            <div ng-show="vm.uiState.professors.loadGif">
+              <label>Select professor</label>
+              <br>
+              <img src="pictures//loading.gif" style="width:20px; height:20px;">
+            </div>
+            <professor-select ng-show="vm.uiState.professors.showProfessors" gs-model="vm.entity.professor" professors="vm.professors"></professor-select>
           </div>
           <div class="col-md-6">
             <wp-input wp-label="Grade"
@@ -57,54 +72,3 @@
     </div>
   </form>
 </div>
-
-<!-- smart table area -->
-<!--<div class="row">
-  <div class="col-md-12">
-    <table st-table="professorEntities" st-safe-src="vm.professorEntities" ng-show="vm.professorEntities.length>0" class="table table-bordered table-striped">
-      <thead>
-      <tr>
-        <th st-sort="firstName">Firstname</th>
-        <th st-sort="lastName">Lastname</th>
-        <th st-sort="email">Email</th>
-        <th>Actions</th>
-      </tr>
-      <tr>
-        <th colspan="4"> <input type="text" class="form-control"  st-search="firstName" st-delay="400" type="search" placeholder="search by professor name..."> </th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr ng-repeat="e in professorEntities | orderBy:['firstName', 'lastName'] | filter:searchProfName">
-        <td>{{e.firstName}}</td>
-        <td>{{e.lastName | uppercase}}</td>
-        <td>{{e.email}}</td>
-        <td>
-          <button class="btn btn-xs btn-default"
-                  ng-click="vm.edit(e)">
-            Edit
-          </button>
-          <button class="btn btn-xs btn-danger"
-                  ng-click="vm.remove(e)">
-            Remove
-          </button>
-        </td>
-      </tr>
-      </tbody>
-      <tfoot>
-      <tr>
-        <td colspan="5" class="text-center">
-          <div st-pagination="" st-items-by-page="3" st-displayed-pages="3"></div>
-        </td>
-      </tr>
-      </tfoot>
-    </table> </br>
-
-    <div class="panel panel-warning text-warning" ng-hide="vm.professorEntities.length>0">
-      There are no professors!
-    </div>
-  </div>
-</div>-->
-
-
-
-

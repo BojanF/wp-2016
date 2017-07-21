@@ -9,10 +9,8 @@
 
         <div class="row">
           <div class="col-md-4">
-            <!--<label>Name</label>
-            <input class="form-control" type="text" ng-required="true" ng-model='vm.entity.name'> -->
-
-
+            <!--<label>Name</label>-->
+            <!--<input class="form-control" type="text" ng-required="true" ng-model='vm.entity.firstName'> -->
             <!-- komponentata wp-input ja vrski istata rabota kako zakomentiranoto parce kod gore-->
             <wp-input wp-label="Firstname"
                       wp-type="text"
@@ -37,8 +35,8 @@
             </wp-input>
           </div>
           <div class="col-md-8">
-            <label> Professor`s courses</label>
-            <ui-select multiple ng-model="vm.newCourses" theme="bootstrap" close-on-select="false" title="Choose courses">
+            <label> Professor`s courses </label>
+            <ui-select ng-show="vm.uiState.courses.showCoursesMenu" multiple ng-model="vm.newCourses" theme="bootstrap" close-on-select="false" title="Choose courses">
               <ui-select-match placeholder="Select courses..."> {{$item.name}} </ui-select-match>
               <ui-select-choices
                 repeat="course in (vm.courses | filter:$select.search)"
@@ -46,39 +44,15 @@
                 {{course.name}}
               </ui-select-choices>
             </ui-select>
+            <div ng-show="vm.uiState.courses.loadGif">
+              <img src="pictures//loading.gif" style="width:20px; height:20px;">
+            </div>
+            <div class="panel panel-danger text-danger" ng-show="vm.uiState.courses.showNoCoursesPanel">
+              There are no courses in the system!
+            </div>
           </div>
         </div>
       </div>
-
-      <!--<div class="form-group">-->
-        <!--<div class="row">-->
-          <!--<div class="col-md-8">-->
-            <!--<label>Size</label>-->
-            <!--<ui-select ng-model="vm.entity.groupSize"-->
-                       <!--title="Choose group size">-->
-              <!--<ui-select-match-->
-                <!--placeholder="Select group size...">-->
-                <!--<span>{{$select.selected}}</span>-->
-              <!--</ui-select-match>-->
-              <!--<ui-select-choices-->
-                <!--repeat="item in (vm.availableSizes | filter:$select.search )"-->
-                <!--position="auto">-->
-                <!--{{item}}-->
-              <!--</ui-select-choices>-->
-            <!--</ui-select>-->
-          <!--</div>-->
-          <!--<div class="col-md-4">-->
-            <!--&lt;!&ndash;<label> Number of terms</label>-->
-            <!--<input type="number" min="1" class="form-control" ng-required="true" ng-model="vm.entity.terms">&ndash;&gt;-->
-            <!--<wp-input wp-label="Number of terms"-->
-                      <!--wp-type="number"-->
-                      <!--wp-model="vm.entity.terms"-->
-                      <!--wp-required="true">-->
-            <!--</wp-input>-->
-
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
     </div>
     <!-- panel footer -->
     <div class="panel-footer text-right">
@@ -103,11 +77,18 @@
 
   </form>
 
-  <!-- smart table area -->
+<!-- smart table area -->
 </div>
 <div class="row">
   <div class="col-md-12">
-    <table st-table="professorEntities" st-safe-src="vm.professorEntities" ng-show="vm.professorEntities.length>0" class="table table-bordered table-striped">
+
+    <div ng-show="vm.uiState.professors.loadGif">
+      <img src="pictures//loading.gif" style="width:20px; height:20px;">
+    </div>
+
+    <br>
+
+    <table st-table="professorEntities" st-safe-src="vm.professorEntities" ng-show="vm.uiState.professors.showProfessorsTable" class="table table-bordered table-striped">
       <thead>
       <tr>
         <th st-sort="firstName">Firstname</th>
@@ -144,11 +125,14 @@
         </td>
       </tr>
       </tfoot>
-    </table> </br>
+    </table>
 
-    <div class="panel panel-warning text-warning" ng-hide="vm.professorEntities.length>0">
+    </br>
+
+    <div class="panel panel-danger text-danger" ng-show="vm.uiState.professors.showNoProfessorsPanel">
       There are no professors!
     </div>
+
   </div>
 </div>
 

@@ -17,4 +17,5 @@
 
     <bean class="mk.ukim.finki.wp.service.impl.InMemoryGroupService"/>
     <bean class="mk.ukim.finki.wp.service.impl.entities.GradeService"/>
+    <bean class="mk.ukim.finki.wp.service.impl.entities.ProfessorService"/>
 </beans>

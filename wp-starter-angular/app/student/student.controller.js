@@ -23,16 +23,32 @@
     vm.saveOkMsg = null;
     vm.saveErrMsg = null;
     vm.LabGroups = [];
+    vm.uiState = {
+      loadGif: true,
+      showStudents: false,
+      showNoStudentsPanel: false
+    }
     loadStudents();
 
     function loadStudents() {
       StudentService.getAll().then(function (data) {
         vm.studentEntities = data;
+
+        vm.uiState.loadGif = false;
+        if(vm.studentEntities.length > 0){
+          vm.uiState.showStudents = true;
+          vm.uiState.showNoStudentsPanel = false;
+        }
+        else{
+          vm.uiState.showStudents = false;
+          vm.uiState.showNoStudentsPanel = true;
+        }
       });
     }
 
     function saveStudent() {
       $log.debug("SE POVIKA");
+      vm.uiState.loadGif = true;
       vm.saveOkMsg = null;
       vm.saveErrMsg = null;
 
@@ -60,6 +76,7 @@
     }
 
     function remove(studentEntity) {
+      vm.uiState.loadGif = true;
       StudentService
         .remove(studentEntity)
         .then(function () {

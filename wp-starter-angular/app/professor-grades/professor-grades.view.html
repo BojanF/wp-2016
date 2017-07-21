@@ -11,14 +11,22 @@
 
         <div class="row">
           <div class="col-md-12">
-            <professor-select gs-model="vm.professorEntity" students="vm.professorEntities"></professor-select>
+
+            <div ng-show="vm.uiState.loadProfessors.loadGif">
+              <label>Select professor</label> <br>
+              <img src="pictures//loading.gif" style="width:20px; height:20px;">
+            </div>
+            <div ng-show="vm.uiState.loadProfessors.showProfessors">
+              <professor-select gs-model="vm.professorEntity" professors="vm.professorEntities"></professor-select>
+            </div>
+
           </div>
         </div>
       </div>
 
 
-    </div>
-    <!-- panel footer -->
+      </div>
+      <!-- panel footer -->
     <div class="panel-footer text-right">
       <button class="btn btn-primary"
               type="submit"
@@ -30,41 +38,113 @@
 
   </form>
 </div>
-<!-- Lista od studenti -->
-<!-- smart table area -->
-<div class="row">
-  <div class="col-md-12">
-    <table st-table="professorGrades" st-safe-src="vm.professorGrades" ng-show="vm.professorGrades.length>0" class="table table-bordered table-striped">
-      <thead>
-      <tr>
-        <th>Professor</th>
-        <th st-sort="group.course.name">Course</th>
-        <th>Lab group</th>
-        <th>Grade</th>
-      </tr>
-      <tr>
-        <th colspan="5"> <input placeholder="search by course name..." st-search="name" st-delay="400" type="search" class="form-control"/> </th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr ng-repeat="grade in professorGrades">
-        <td>{{grade.student.firstName + " " + grade.student.lastName}} </td>
-        <td>{{grade.group.course.name}}</td>
-        <td>{{grade.group.name}}</td>
-        <td>{{grade.gradeValue}}</td>
-      </tr>
-      </tbody>
-      <tfoot>
-      <tr>
-        <td colspan="5" class="text-center">
-          <div st-pagination="" st-items-by-page="10" st-displayed-pages="5"></div>
-        </td>
-      </tr>
-      </tfoot>
-    </table> </br>
 
-    <div class="panel panel-warning text-warning" ng-hide="vm.professorGrades.length>0">
-      There are no grades!
+
+<ul class="nav nav-tabs" ng-show="vm.uiState.loadGrades.showGrades">
+  <li class="active">
+    <a  href="#tab1" data-toggle="tab">Grades</a>
+  </li>
+  <li>
+    <a href="#tab2" data-toggle="tab">Stats</a>
+  </li>
+</ul>
+
+</br>
+
+<div ng-show="vm.uiState.loadGrades.loadGif">
+  <img src="pictures//loading.gif" style="width:20px; height:20px;">
+</div>
+
+<div class="tab-content clearfix">
+
+  <div class="tab-pane active" id="tab1">
+    <!-- Lista od studenti -->
+    <!-- smart table area -->
+    <div class="row">
+      <div class="col-md-12">
+        <table st-table="professorGrades" st-safe-src="vm.professorGrades" ng-show="vm.uiState.loadGrades.showGrades" class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>Professor</th>
+              <th st-sort="group.course.name">Course</th>
+              <th>Lab group</th>
+              <th>Grade</th>
+            </tr>
+            <tr>
+              <th colspan="5"> <input placeholder="search by course name..." st-search="group.course.name" st-delay="400" type="search" class="form-control"/> </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr ng-repeat="grade in professorGrades">
+              <td>{{grade.student.firstName + " " + grade.student.lastName}} </td>
+              <td>{{grade.group.course.name}}</td>
+              <td>{{grade.group.name}}</td>
+              <td>{{grade.gradeValue}}</td>
+            </tr>
+          </tbody>
+
+          <tfoot>
+            <tr>
+              <td colspan="5" class="text-center">
+                <div st-pagination="" st-items-by-page="10" st-displayed-pages="5"></div>
+              </td>
+            </tr>
+          </tfoot>
+
+        </table>
+      </div>
     </div>
   </div>
+
+  <div class="tab-pane" id="tab2">
+      <!--stats-->
+      <div class="row" ng-show="vm.uiState.loadGrades.showGrades">
+
+        <div class="col-md-12">
+          <h3>Grades per course and percentges</h3>
+        </div>
+
+        <div class="col-md-7">
+          <c3chart bindto-id="bar-plot1-chart" chart-data="vm.c3Data.points.pointsGradesPerCourse" chart-columns="vm.c3Data.columns.gradesPerCourse.bar">
+            <!--<chart-donut title="Donut" width="60"/>-->
+            <chart-size chart-height="400" chart-width="600"/>
+
+          </c3chart>
+        </div>
+
+        <div class="col-md-5">
+          <c3chart bindto-id="donut-plot1-chart" chart-data="vm.c3Data.points.pointsGradesPerCourse" chart-columns="vm.c3Data.columns.gradesPerCourse.donut">
+
+            <chart-legend show-legend="true" legend-position="right"/>
+            <chart-size chart-height="350" chart-width="450"/>
+          </c3chart>
+        </div>
+
+        <div class="col-md-12">
+          <h3>Grades values</h3>
+        </div>
+
+        <div class="col-md-7">
+          <c3chart bindto-id="bar-plot2-chart" chart-data="vm.c3Data.points.pointsGradesValues" chart-columns="vm.c3Data.columns.gradesValue.bar">
+
+            <chart-size chart-height="400" chart-width="600"/>
+            <!--<chart-axes valuesXs="vm.xValues"/>-->
+          </c3chart>
+        </div>
+
+        <div class="col-md-5">
+          <c3chart bindto-id="donut-plot2-chart" chart-data="vm.c3Data.points.pointsGradesValues" chart-columns="vm.c3Data.columns.gradesValue.donut">
+            <chart-donut title="Donut" width="60"/>
+            <chart-legend show-legend="true" legend-position="right"/>
+            <chart-size chart-height="350" chart-width="450"/>
+          </c3chart>
+        </div>
+
+      </div>
+  </div>
+</div>
+
+<div class="panel panel-danger text-danger" ng-show="vm.uiState.loadGrades.showNoGradesPanel">
+  There are no grades!
 </div>

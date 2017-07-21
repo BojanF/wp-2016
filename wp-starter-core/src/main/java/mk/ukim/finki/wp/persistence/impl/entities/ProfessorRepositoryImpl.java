@@ -34,7 +34,23 @@ public class ProfessorRepositoryImpl implements IProfessorRepository {
     }
 
     public List<Course> findCoursesNotAssignedToHim(Long professorId) {
-       return null;
+        //TUKA
+//        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+//        CriteriaQuery<Course> q = cb.createQuery(Course.class);
+//        Root<Course> courseRoot = q.from(Course.class);
+//        Root<Professor> professorRoot = q.from(Professor.class);
+//        ParameterExpression<Long> id = cb.parameter(Long.class);
+//        Join<Object, Object> fromCourse = courseRoot.join(Professor.FIELDS.COURSES);
+//
+//        q.select(courseRoot).where(cb.equal(professorRoot.get(Professor.FIELDS.ID), id),
+//                                   cb.equal(professorRoot.get(Professor.FIELDS.ID), fromCourse.get(Professor.FIELDS.ID)),
+//                                   cb.equal(courseRoot.get(Course.FIELDS.ID), fromCourse.get(Course.FIELDS.ID)) );
+//
+//        TypedQuery<Course> query = entityManager.createQuery(q);
+//        query.setParameter(id, professorId);
+//        List<Course> results = query.getResultList();
+//        return results;
+        return null;
     }
 
     @Transactional

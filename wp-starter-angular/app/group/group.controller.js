@@ -5,10 +5,10 @@
     .module('wp-angular-starter')
     .controller('GroupController', GroupController);
 
-  GroupController.$inject = ['$log', 'GroupService', 'ProfessorService', 'CourseService'];
+  GroupController.$inject = ['$log', 'GroupService', 'ProfessorService'];
 
   /* @ngInject */
-  function GroupController($log, GroupService, ProfessorService, CourseService) {
+  function GroupController($log, GroupService, ProfessorService) {
     var vm = this;
     vm.title = 'Group';
     vm.save = save;
@@ -22,13 +22,33 @@
     vm.availableSizes = [20, 40];
     vm.professors = [];
     vm.courses = [];
+    vm.uiState = {
+      professors:{
+        loadGif: true,
+        showProfessors: false
+      },
+      labGroups:{
+        loadGif: true,
+        showNoGroupsPanel: false,
+        showGroups: false
+      }
+    };
     loadGroups();
-    // loadProfessors();
-    // loadCourses();
+    loadProfessors();
 
     function loadGroups() {
       GroupService.getAll().then(function (data) {
         vm.labGroupsEntities = data;
+
+        vm.uiState.labGroups.loadGif = false;
+        if(vm.labGroupsEntities.length > 0){
+          vm.uiState.labGroups.showGroups = true;
+          vm.uiState.labGroups.showNoGroupsPanel = false;
+        }
+        else{
+          vm.uiState.labGroups.showGroups = false;
+          vm.uiState.labGroups.showNoGroupsPanel = true;
+        }
       });
     }
 
@@ -36,17 +56,14 @@
       ProfessorService.getAll().then(function (data) {
         vm.professors = data;
 
-      })
-    }
-
-    function loadCourses(){
-      CourseService.getAll().then(function (data) {
-        vm.courses = data;
+        vm.uiState.professors.loadGif = false;
+        vm.uiState.professors.showProfessors = true;
 
       })
     }
 
     function save() {
+      vm.uiState.labGroups.loadGif = true;
       vm.saveOkMsg = null;
       vm.saveErrMsg = null;
 
@@ -70,12 +87,13 @@
     }
 
     function edit(entity) {
-      //za d se poplni vo view-to
+      //za da se poplni vo view-to
       vm.entity = {};
       angular.extend(vm.entity, entity);
     }
 
     function remove(entity) {
+      vm.uiState.labGroups.loadGif = true;
       GroupService
         .remove(entity)
         .then(function () {

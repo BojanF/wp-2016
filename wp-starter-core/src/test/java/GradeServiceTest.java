@@ -1,5 +1,7 @@
+import mk.ukim.finki.wp.model.Course;
 import mk.ukim.finki.wp.model.Grade;
 import mk.ukim.finki.wp.service.IGradeService;
+import mk.ukim.finki.wp.service.IProfessorService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,13 +22,23 @@ public class GradeServiceTest {
     @Autowired
     public IGradeService gradeService;
 
+    @Autowired
+    public IProfessorService professorService;
+
+
+//    @Test
+//    public void testStudentGrades(){
+//        //on the fly test
+//        List<Grade> gradesForStudent = gradeService.studentGrades(1l);
+//        int x = 0;
+//        Assert.assertEquals(2, gradesForStudent.size());
+//    }
 
     @Test
-    public void testStudentGrades(){
-        //on the fly test
-        List<Grade> gradesForStudent = gradeService.studentGrades(1l);
+    public void testJoinJPA(){
+        List<Course> courses = professorService.findCoursesNotAssignedToHim(6l);
         int x = 0;
-        Assert.assertEquals(2, gradesForStudent.size());
+        Assert.assertEquals(1, courses.size());
     }
 
 }

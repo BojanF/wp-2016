@@ -23,4 +23,12 @@ public class Grade extends BaseEntity{
 
   @Column(name = "grade_value")
   public Integer gradeValue;
+
+  public static class FIELDS{
+    public static String ID = "id";
+    public static String STUDENT = "student";
+    public static String GROUP = "group";
+    public static String PROFESSOR = "professor";
+    public static String GRADE_VALUE = "gradeValue";
+  }
 }

@@ -38,6 +38,11 @@
 за да се преземе [ngResource](https://docs.angularjs.org/api/ngResource) библиотеката потребна за [$resource] (https://docs.angularjs.org/api/ngResource/service/$resource) сервисот.
 <hr/>
 
+Следно извршете ја командата
+```bower install c3-angular --save```
+за да се преземе [c3-angular](http://jettro.github.io/c3-angular-directive/) AngularJS директивите за библиотеката [c3js](c3js.orf) библиотеката.
+<hr/>
+
 Потоа извршете `gulp build` да извршите иницијално составување на библиотеките и кодовите конфигурирани во `gulpfile.js`. 
 
     Оваа команда треба да се изврши секогаш кога ќе се додаде нова Javascript или CSS библиотека или пак фонтови

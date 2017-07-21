@@ -10,6 +10,14 @@ import java.util.Collection;
 @Table(name = "wp_professors")
 public class Professor extends Person {
 
+  public static class FIELDS{
+    public static String ID = "id";
+    public static String FIRSTNAME= "firstName";
+    public static String LASTNAME= "lastName";
+    public static String EMAIL = "email";
+    public static String COURSES = "courses";
+  }
+
   /**
    * Courses for which the professor is assigned. It doesn't mean that he/she
    * has active group from that course

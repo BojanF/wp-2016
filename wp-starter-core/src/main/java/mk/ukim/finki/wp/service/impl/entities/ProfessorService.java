@@ -1,5 +1,6 @@
 package mk.ukim.finki.wp.service.impl.entities;
 
+import mk.ukim.finki.wp.model.Course;
 import mk.ukim.finki.wp.model.Professor;
 import mk.ukim.finki.wp.persistence.IProfessorRepository;
 import mk.ukim.finki.wp.service.IProfessorService;
@@ -35,5 +36,9 @@ public class ProfessorService implements IProfessorService {
 
     public void deleteById(Long id) {
         professorRepository.deleteById(id);
+    }
+
+    public List<Course> findCoursesNotAssignedToHim(Long professorId) {
+        return professorRepository.findCoursesNotAssignedToHim(professorId);
     }
 }

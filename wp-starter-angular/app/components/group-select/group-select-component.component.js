@@ -10,23 +10,11 @@
     .component('groupSelect', {
       templateUrl: 'app/components/group-select/group-select-component.view.html',
       bindings: {
-        gsModel: "="
-      },
-      controller: GroupSelectComponent
+        gsModel: "=",
+        groups: "<"
+      }
 
     });
-  GroupSelectComponent.$inject = ['$attrs', 'GroupService'];
-  function GroupSelectComponent($attrs, GroupService){
-    var vm = this;
-    vm.LabGroups = [];
-    GroupService.getAll().then(function(data){
-      vm.LabGroups = data;
-    });
-    //this.gsModel = $attrs.gsModel;
-
-  };
-
-
 
 })();
 
